@@ -20,12 +20,12 @@ class PaquetePropio : public Paquete
 	float descuento;
 
 	public:
-		PaquetePropio(string,Fecha,int,int,float);
+		PaquetePropio(string destino,Fecha fechaSalida,int cantidadDias,int cantidadReservas,int cupoMaximoPasajeros,float descuento);
 		int getCupoMaxPasajeros();
 		int getCantidadReservas();
 		float getDescuento();
 		float calcularCosto();
-		void AgregarTrayecto(); //faltan los atributos de trayecto
+		void AgregarTrayecto(Trayecto*);
 		~PaquetePropio();
 };
 

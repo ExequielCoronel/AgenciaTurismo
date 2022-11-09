@@ -21,7 +21,7 @@ class Trayecto
 	float costo;
 
 	public:
-		Trayecto(string,string,int,float);
+		Trayecto(string ciudadOrigen,string ciudadDestino,int cantidadDias,float costo);
 		string getCiudadOrigen();
 		string getCiudadDestino();
 		int getcantDias();

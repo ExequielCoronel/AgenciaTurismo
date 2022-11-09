@@ -23,7 +23,7 @@ class Pasajero
 	Fecha FechaNacimiento;
 
 	public:
-		Pasajero(int,string,string,long,long,Fecha);
+		Pasajero(string nombre,string apellido,long dni,long numPasaporte,Fecha fechaNacimiento);
 		long getCod();
 		string getNombre();
 		string getApellido();

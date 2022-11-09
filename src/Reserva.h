@@ -10,17 +10,30 @@
 
 #include <vector>
 #include "Paquete.h"
+#include "Agente.h"
 #include "Pasajero.h"
 
 class Reserva
 {
     static long AI;
     long CodigoReserva;
-    Fecha fecha;
-    string NombreAgente;
+    Fecha fechaReserva;
+    Fecha fechaCaducidad;
+    Agente *Agent;
     vector<Pasajero*> ListadoPasajeros;
-    Paquete *Paquete;
+    Paquete *Packet;
     float senia;
+
+	public:
+    	Reserva(Fecha fechaReserva,Fecha fechaCaducidad,float senia, Agente Agente, Paquete* Paquete);
+    	long getCodigoReserva();
+    	Fecha getFechaReserva();
+    	Fecha getFechaCaducidad();
+    	Agente getAgente();
+    	Paquete* getPaquete();
+    	bool AgregarPasajero(Pasajero*);
+    	float getSenia();
+    	~Reserva();
 }
 
 

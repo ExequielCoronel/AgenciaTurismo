@@ -18,9 +18,10 @@ class Paquete
 	long codPaquete;
 	string destino;
 	Fecha fechaSalida;
+	int cantidadDias;
 
 	public:
-		Paquete(string,Fecha);
+		Paquete(string destino,Fecha fechaSalida, int cantidadDias);
 		virtual float calcularCosto() = 0;
 		virtual ~Paquete();
 };
