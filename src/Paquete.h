@@ -14,12 +14,14 @@ using namespace std;
 
 class Paquete
 {
+	static long IA;
+	long codPaquete;
 	string destino;
 	Fecha fechaSalida;
 
 	public:
-		virtual float calcularCosto() = 0;
 		Paquete(string,Fecha);
+		virtual float calcularCosto() = 0;
 		virtual ~Paquete();
 };
 

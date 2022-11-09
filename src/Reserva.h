@@ -14,7 +14,7 @@
 
 class Reserva
 {
-    static long AI = 0;
+    static long AI;
     long CodigoReserva;
     Fecha fecha;
     string NombreAgente;
