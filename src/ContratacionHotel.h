@@ -1,10 +1,3 @@
-/*
- * ContratacionesHotel.h
- *
- *  Created on: 9 nov. 2022
- *      Author: execo
- */
-
 #ifndef CONTRATACIONHOTEL_H_
 #define CONTRATACIONHOTEL_H_
 
@@ -21,10 +14,10 @@ class ContratacionHotel
 	Fecha fechaCheckIn;
 	Fecha fechaCheckOut;
 	int cantNoches;
-	float precioXNoche;
+	float precioNoche;
 
 	public:
-		ContratacionHotel(string nombreHotel,string ubicacion,Fecha CheckIn,Fecha CheckOut,int cantidadNoches,float precioXnoche);
+		ContratacionHotel(string nombreHotel,string ubicacion,Fecha CheckIn,Fecha CheckOut,int cantidadNoches,float precioNoche);
 		string getNombreHotel();
 		string getUbicacion();
 		Fecha getFechaCheckIn();

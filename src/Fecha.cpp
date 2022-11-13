@@ -1,7 +1,3 @@
-/*
- * Fecha.cpp
- */
-
 #include "Fecha.h"
 #include <iostream>
 

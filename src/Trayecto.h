@@ -1,10 +1,3 @@
-/*
- * Trayecto.h
- *
- *  Created on: 9 nov. 2022
- *      Author: execo
- */
-
 #ifndef TRAYECTO_H_
 #define TRAYECTO_H_
 

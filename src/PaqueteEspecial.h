@@ -1,10 +1,3 @@
-/*
- * PaqueteEspecial.h
- *
- *  Created on: 9 nov. 2022
- *      Author: execo
- */
-
 #ifndef PAQUETEESPECIAL_H_
 #define PAQUETEESPECIAL_H_
 

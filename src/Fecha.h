@@ -1,7 +1,3 @@
-/*
- * Fecha.h
- */
-
 #ifndef FECHA_H_
 #define FECHA_H_
 #include <iostream>

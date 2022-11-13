@@ -1,10 +1,3 @@
-/*
- * PaquetePropio.h
- *
- *  Created on: 9 nov. 2022
- *      Author: execo
- */
-
 #ifndef PAQUETEPROPIO_H_
 #define PAQUETEPROPIO_H_
 

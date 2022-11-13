@@ -1,10 +1,3 @@
-/*
- * Pasajero.h
- *
- *  Created on: 9 nov. 2022
- *      Author: execo
- */
-
 #ifndef PASAJERO_H_
 #define PASAJERO_H_
 

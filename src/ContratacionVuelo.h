@@ -1,10 +1,3 @@
-/*
- * ContratacionVuelo.h
- *
- *  Created on: 9 nov. 2022
- *      Author: execo
- */
-
 #ifndef CONTRATACIONVUELO_H_
 #define CONTRATACIONVUELO_H_
 
@@ -23,19 +16,19 @@ class ContratacionVuelo
 	Fecha fechaLlegada;
 	Hora horaSalida;
 	Hora horaLlegada;
-	float tarifaXMenor;
-	float tarifaXMayor;
+	float tarifaPorMenor;
+	float tarifaPorMayor;
 
 	public:
-		ContratacionVuelo(string lineaAerea,string operadorVuel,Fecha fechaSalida,Hora horasalida,Fecha fechaLlegada,Hora horaLlegada,float tarifaXmenor,float tarifaXmayor);
+		ContratacionVuelo(string lineaAerea, string operadorVuelo, Fecha fechaSalida, Hora horaSalida, Fecha fechaLlegada, Hora horaLlegada, float tarifaPorMenor, float tarifaPorMayor);
 		string getLineaAerea();
 		string getOperadorVuelo();
 		Fecha getFechaSalida();
 		Fecha getFechaLlegada();
 		Hora getHoraSalida();
 		Hora getHoraLlegada();
-		float getTarifaXMenor();
-		float getTarifaXMayor();
+		float getTarifaPorMenor();
+		float getTarifaPorMayor();
 		~ContratacionVuelo();
 };
 

@@ -1,10 +1,3 @@
-/*
- * Reserva.h
- *
- *  Created on: 9 nov. 2022
- *      Author: execo
- */
-
 #ifndef RESERVA_H_
 #define RESERVA_H_
 

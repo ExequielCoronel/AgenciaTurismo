@@ -1,10 +1,3 @@
-/*
- * Agente.h
- *
- *  Created on: 9 nov. 2022
- *      Author: execo
- */
-
 #ifndef AGENTE_H_
 #define AGENTE_H_
 
@@ -21,7 +14,7 @@ class Agente
 	long dni;
 
 	public:
-		Agente(string,string,long);
+		Agente(string nombre, string apellido, long dni);
 		long getCodAgente();
 		string getNombre();
 		string getApellido();

@@ -1,10 +1,3 @@
-/*
- * Paquete.h
- *
- *  Created on: 9 nov. 2022
- *      Author: execo
- */
-
 #ifndef PAQUETE_H_
 #define PAQUETE_H_
 
