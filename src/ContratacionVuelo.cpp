@@ -47,6 +47,8 @@ float ContratacionVuelo::getTarifaPorMayor(){
     return this->tarifaPorMayor;
 }
 
+long ContratacionVuelo::getCodContratacionV(){return codContratacionV;}
+
 ContratacionVuelo::~ContratacionVuelo(){
 
 }

@@ -24,6 +24,7 @@ class ContratacionHotel
 		Fecha getFechaCheckOut();
 		int getCantidadNoches();
 		float getPrecioXNoche();
+		long getCodContratacionHotel();
 		~ContratacionHotel();
 };
 

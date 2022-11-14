@@ -18,7 +18,8 @@ class PaquetePropio : public Paquete
 		int getCantidadReservas();
 		float getDescuento();
 		float calcularCosto();
-		void AgregarTrayecto(Trayecto*);
+		bool AgregarTrayecto(Trayecto*);
+		bool EliminarTrayecto(long codTrayecto);
 		~PaquetePropio();
 };
 

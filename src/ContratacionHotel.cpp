@@ -9,6 +9,8 @@ ContratacionHotel::ContratacionHotel(string nombreHotel,string ubicacion,Fecha C
     this->fechaCheckOut = CheckOut;
     this->cantNoches = cantidadNoches;
     this->precioNoche = precioNoche;
+    this->codContratacionH = IA;
+    IA++;
 }
 
 string ContratacionHotel::getNombreHotel(){
@@ -34,6 +36,8 @@ int ContratacionHotel::getCantidadNoches(){
 float ContratacionHotel::getPrecioXNoche(){
     return this->precioNoche;
 }
+
+long ContratacionHotel::getCodContratacionHotel(){return codContratacionH;}
 
 ContratacionHotel::~ContratacionHotel(){
 

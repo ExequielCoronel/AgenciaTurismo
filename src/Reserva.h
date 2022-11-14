@@ -25,6 +25,7 @@ class Reserva
     	Agente getAgente();
     	Paquete* getPaquete();
     	bool AgregarPasajero(Pasajero*);
+    	bool EliminarPasajero(long codPasajero);
     	float getSenia();
     	~Reserva();
 }

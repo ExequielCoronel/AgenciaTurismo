@@ -6,7 +6,7 @@ using namespace std;
 
 class Trayecto
 {
-	static long IA;
+	static long AI;
 	long codTrayecto;
 	string ciudadOrigen;
 	string ciudadDestino;
@@ -19,6 +19,7 @@ class Trayecto
 		string getCiudadDestino();
 		int getcantDias();
 		float getCosto();
+		long getCodTrayecto();
 		~Trayecto();
 };
 

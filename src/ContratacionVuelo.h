@@ -29,6 +29,7 @@ class ContratacionVuelo
 		Hora getHoraLlegada();
 		float getTarifaPorMenor();
 		float getTarifaPorMayor();
+		long getCodContratacionV();
 		~ContratacionVuelo();
 };
 
