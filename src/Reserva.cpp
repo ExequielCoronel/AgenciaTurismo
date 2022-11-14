@@ -9,6 +9,7 @@ Reserva::Reserva(Fecha fechaReserva,Fecha fechaCaducidad,float senia, Agente Age
 	this->senia = senia;
 	this->Agent = &Agente;
 	this->Packet = Paquete;
+	this->paqueteConfirmado = false;
 	CodigoReserva = AI;
 	AI++;
 }
@@ -41,6 +42,13 @@ bool Reserva::EliminarPasajero(long codPasajero)
 		}
 	}
 	return false;
+}
+
+void Reserva::confirmarReserva(){
+
+	if(!this->fechaCaducidad.esFechaPasada() && !this->reservaConfirmada){
+		this->reservaConfirmada = true;
+	}
 }
 
 Reserva::~Reserva(){}

@@ -16,6 +16,7 @@ class Reserva
     vector<Pasajero*> ListadoPasajeros;
     Paquete *Packet;
     float senia;
+    bool reservaConfirmada;
 
 	public:
     	Reserva(Fecha fechaReserva,Fecha fechaCaducidad,float senia, Agente Agente, Paquete* Paquete);
@@ -27,6 +28,8 @@ class Reserva
     	bool AgregarPasajero(Pasajero*);
     	bool EliminarPasajero(long codPasajero);
     	float getSenia();
+    	bool getPaqueteConfirmado();
+    	void confirmarReserva();
     	~Reserva();
 }
 

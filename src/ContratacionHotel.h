@@ -25,6 +25,7 @@ class ContratacionHotel
 		int getCantidadNoches();
 		float getPrecioXNoche();
 		long getCodContratacionHotel();
+		float calcularCostoContratacion();
 		~ContratacionHotel();
 };
 

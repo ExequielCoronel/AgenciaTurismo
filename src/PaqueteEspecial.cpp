@@ -42,6 +42,21 @@ bool PaqueteEspecial::EliminarVuelo(long codVuelo)
 	return false;
 }
 
+float PaqueteEspecial::calcularCosto(){
 
+	float total = 0;
+
+	for(ContratacionHotel* contHotel:hotelesContratados){
+		total = total + contHotel->calcularCostoContratacion();
+	}
+
+	for(ContratacionVuelo* contVuelo:vuelosContratados){
+		total = total + contVuelo->calcularCostoContratacion();
+	}
+
+	total = total + this->comisionAgencia;
+
+	return total;
+}
 
 PaqueteEspecial::~PaqueteEspecial(){}

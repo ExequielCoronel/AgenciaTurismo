@@ -18,9 +18,11 @@ class ContratacionVuelo
 	Hora horaLlegada;
 	float tarifaPorMenor;
 	float tarifaPorMayor;
+	int cantMayores;
+	int cantMenores;
 
 	public:
-		ContratacionVuelo(string lineaAerea, string operadorVuelo, Fecha fechaSalida, Hora horaSalida, Fecha fechaLlegada, Hora horaLlegada, float tarifaPorMenor, float tarifaPorMayor);
+		ContratacionVuelo(string lineaAerea, string operadorVuelo, Fecha fechaSalida, Hora horaSalida, Fecha fechaLlegada, Hora horaLlegada, float tarifaPorMenor, float tarifaPorMayor, int, int);
 		string getLineaAerea();
 		string getOperadorVuelo();
 		Fecha getFechaSalida();
@@ -30,6 +32,7 @@ class ContratacionVuelo
 		float getTarifaPorMenor();
 		float getTarifaPorMayor();
 		long getCodContratacionV();
+		float calcularCostoContratacion();
 		~ContratacionVuelo();
 };
 
