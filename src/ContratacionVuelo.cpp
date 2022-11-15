@@ -1,8 +1,7 @@
 #include "ContratacionVuelo.h"
 
-long ContratacionVuelo::IA = 1;
-
-ContratacionVuelo::ContratacionVuelo(string lineaAerea, string operadorVuelo, Fecha fechaSalida, Hora horaSalida, Fecha fechaLlegada, Hora horaLlegada, float tarifaPorMenor, float tarifaPorMayor, int mayores, int menores){
+ContratacionVuelo::ContratacionVuelo(string lineaAerea, string operadorVuelo, Fecha fechaSalida, Hora horaSalida, Fecha fechaLlegada, Hora horaLlegada, float tarifaPorMenor, float tarifaPorMayor, int cantMayores, int cantMenores) : Contratacion()
+{
     this->lineaAerea = lineaAerea;
     this->operadorVuelo = operadorVuelo;
     this->fechaSalida = fechaSalida;
@@ -11,51 +10,61 @@ ContratacionVuelo::ContratacionVuelo(string lineaAerea, string operadorVuelo, Fe
     this->horaLlegada = horaLlegada;
     this->tarifaPorMenor = tarifaPorMenor;
     this->tarifaPorMayor = tarifaPorMayor;
-    this->cantMayores = mayores;
-    this->cantMenores = menores;
-    this->codContratacionV = IA;
-    IA++;
+    this->cantMayores = cantMayores;
+    this->cantMenores = cantMenores;
 }
 
-string ContratacionVuelo::getLineaAerea(){
+string ContratacionVuelo::getLineaAerea()
+{
     return this->lineaAerea;
 }
 
-string ContratacionVuelo::getOperadorVuelo(){
+string ContratacionVuelo::getOperadorVuelo()
+{
     return this->operadorVuelo;
 }
 
-Fecha ContratacionVuelo::getFechaSalida(){
+Fecha ContratacionVuelo::getFechaSalida()
+{
     return this->fechaSalida;
 }
 
-Fecha ContratacionVuelo::getFechaLlegada(){
+Fecha ContratacionVuelo::getFechaLlegada()
+{
     return this->fechaLlegada;
 }
 
-Hora ContratacionVuelo::getHoraSalida(){
+Hora ContratacionVuelo::getHoraSalida()
+{
     return this->horaSalida;
 }
 
-Hora ContratacionVuelo::getHoraLlegada(){
+Hora ContratacionVuelo::getHoraLlegada()
+{
     return this->horaLlegada;
 }
 
-float ContratacionVuelo::getTarifaPorMenor(){
+float ContratacionVuelo::getTarifaPorMenor()
+{
     return this->tarifaPorMenor;
 }
 
-float ContratacionVuelo::getTarifaPorMayor(){
+float ContratacionVuelo::getTarifaPorMayor()
+{
     return this->tarifaPorMayor;
 }
 
-long ContratacionVuelo::getCodContratacionV(){return codContratacionV;}
-
-float ContratacionVuelo::calcularCostoContratacion(){ //para la funcion hay que mandar por parametros cuantos mayores y cuantos menores
-
-	return ((this->tarifaPorMayor * this->cantMayores) + (this->tarifaPorMenor * this->cantMenores));
+long ContratacionVuelo::getCodigo()
+{
+    return codigo;
 }
 
-ContratacionVuelo::~ContratacionVuelo(){
+float ContratacionVuelo::calcularCostoContratacion()
+{
+    return (this->tarifaPorMayor * this->cantMayores) + (this->tarifaPorMenor * this->cantMenores);
+}
+
+ContratacionVuelo::~ContratacionVuelo()
+{
 
 }

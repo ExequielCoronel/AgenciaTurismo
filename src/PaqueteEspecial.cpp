@@ -1,53 +1,58 @@
 #include "PaqueteEspecial.h"
 
-PaqueteEspecial::PaqueteEspecial(string destino, Fecha fechaSalida, int cantidadDias, float comisionAgencia) : Paquete(destino,fechaSalida,cantidadDias){this->comisionAgencia = comisionAgencia;}
-
-float PaqueteEspecial::getComisionAgencia(){return comisionAgencia;}
-
-void PaqueteEspecial::AgregarVuelo(string lineaAerea, string operadorVuelo, Fecha fechaSalida, Hora horaSalida, Fecha fechaLlegada, Hora horaLlegada, float tarifaPorMenor, float tarifaPorMayor)
+PaqueteEspecial::PaqueteEspecial(string destino, Fecha fechaSalida, int cantidadDias, float comisionAgencia) : Paquete(destino, fechaSalida, cantidadDias)
 {
-	ContratacionVuelo nuevaContratacionVuelo(lineaAerea, operadorVuelo, fechaSalida, horaSalida, fechaLlegada, horaLlegada, tarifaPorMenor, tarifaPorMayor);
-	vuelosContratados.push_back(&nuevaContratacionVuelo);
+	this->comisionAgencia = comisionAgencia;
 }
 
-void PaqueteEspecial::AgregarHotel(string nombreHotel,string ubicacion,Fecha CheckIn,Fecha CheckOut,int cantidadNoches,float precioNoche)
+float PaqueteEspecial::getComisionAgencia()
 {
-	ContratacionHotel nuevaContratacionHotel(nombreHotel,ubicacion,CheckIn,CheckOut,cantidadNoches,precioNoche);
-	hotelesContratados.push_back(&nuevaContratacionHotel);
+	return comisionAgencia;
 }
 
-void PaqueteEspecial::EliminarHotel(long codHotel)
+void PaqueteEspecial::agregarVuelo(string lineaAerea, string operadorVuelo, Fecha fechaSalida, Hora horaSalida, Fecha fechaLlegada, Hora horaLlegada, float tarifaPorMenor, float tarifaPorMayor, int cantMayores, int cantMenores)
 {
-	for(int i=0; i<hotelesContratados.size();i++)
-	{																		//Se podria utilizar un Iterador
-		if(codHotel == hotelesContratados[i]->getCodContratacionHotel())
+	contrataciones.push_back(new ContratacionVuelo(lineaAerea, operadorVuelo, fechaSalida, horaSalida, fechaLlegada, horaLlegada, tarifaPorMenor, tarifaPorMayor, cantMayores, cantMenores));
+}
+
+void PaqueteEspecial::agregarHotel(string nombreHotel, string ubicacion, Fecha CheckIn, Fecha CheckOut, int cantidadNoches, float precioNoche)
+{
+	contrataciones.push_back(new ContratacionHotel(nombreHotel, ubicacion, CheckIn, CheckOut, cantidadNoches, precioNoche));
+}
+
+long PaqueteEspecial::getCodigo()
+{
+	return codPaquete;
+}
+
+void PaqueteEspecial::eliminarContratacion(long codigo)
+{
+	int index;
+	bool encontrado = false;
+
+	for (index = 0; index < contrataciones.size() && !encontrado; index++)
+	{
+		if (contrataciones[index]->getCodigo() == codigo)
 		{
-			hotelesContratados.erase(hotelesContratados.begin() + i);
+			encontrado = true;
 		}
+	}
+
+	if (encontrado)
+	{
+		delete contrataciones[index];
+		contrataciones.erase(contrataciones.begin() + index);
 	}
 }
 
-void PaqueteEspecial::EliminarVuelo(long codVuelo)
+float PaqueteEspecial::calcularCosto()
 {
-	for(int i=0; i<vuelosContratados.size();i++)
-	{																		//Se podria utilizar un Iterador
-		if(codVuelo == vuelosContratados[i]->getCodContratacionV())
-		{
-			vuelosContratados.erase(vuelosContratados.begin() + i);
-		}
-	}
-}
-
-float PaqueteEspecial::calcularCosto(){
 
 	float total = 0;
 
-	for(ContratacionHotel* contHotel:hotelesContratados){
-		total = total + contHotel->calcularCostoContratacion();
-	}
-
-	for(ContratacionVuelo* contVuelo:vuelosContratados){
-		total = total + contVuelo->calcularCostoContratacion();
+	for (Contratacion *cont : contrataciones)
+	{
+		total = total + cont->calcularCostoContratacion();
 	}
 
 	total = total + this->comisionAgencia;
@@ -57,18 +62,11 @@ float PaqueteEspecial::calcularCosto(){
 
 PaqueteEspecial::~PaqueteEspecial()
 {
-	int i=0;
-	while(!vuelosContratados.empty())
+
+	for (int i = 0; i < contrataciones.size(); i++)
 	{
-		delete vuelosContratados[i];
-		i++;
+		delete contrataciones[i];
 	}
-	vuelosContratados.clear();
-	i=0;
-	while(!hotelesContratados.empty())
-	{
-		delete hotelesContratados[i];
-		i++;
-	}
-	hotelesContratados.clear();
+
+	contrataciones.clear();
 }

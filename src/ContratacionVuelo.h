@@ -1,15 +1,14 @@
 #ifndef CONTRATACIONVUELO_H_
 #define CONTRATACIONVUELO_H_
 
-#include "fecha.h"
+#include "Fecha.h"
 #include "Hora.h"
+#include "Contratacion.h"
 #include <iostream>
 using namespace std;
 
-class ContratacionVuelo
+class ContratacionVuelo: public Contratacion
 {
-	static long IA;
-	long codContratacionV;
 	string lineaAerea;
 	string operadorVuelo;
 	Fecha fechaSalida;
@@ -22,7 +21,7 @@ class ContratacionVuelo
 	int cantMenores;
 
 	public:
-		ContratacionVuelo(string lineaAerea, string operadorVuelo, Fecha fechaSalida, Hora horaSalida, Fecha fechaLlegada, Hora horaLlegada, float tarifaPorMenor, float tarifaPorMayor, int, int);
+		ContratacionVuelo(string lineaAerea, string operadorVuelo, Fecha fechaSalida, Hora horaSalida, Fecha fechaLlegada, Hora horaLlegada, float tarifaPorMenor, float tarifaPorMayor, int cantMayores, int cantMenores);
 		string getLineaAerea();
 		string getOperadorVuelo();
 		Fecha getFechaSalida();
@@ -31,7 +30,7 @@ class ContratacionVuelo
 		Hora getHoraLlegada();
 		float getTarifaPorMenor();
 		float getTarifaPorMayor();
-		long getCodContratacionV();
+		long getCodigo();
 		float calcularCostoContratacion();
 		~ContratacionVuelo();
 };

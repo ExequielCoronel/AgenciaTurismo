@@ -15,28 +15,22 @@ private:
 	short diasEnMes(const short mes) const;
 
 public:
-	//Constructores
 	Fecha();
 	Fecha(const short d, const short m, const short a);
 	Fecha(const Fecha &f);
-	//Setters
 	void setFechaActual(void);
 	void setFecha(const short d, const short m, const short a);
-	//Getters
 	short getDia() const;
 	short getMes() const;
 	short getAnio() const;
-	//Test anio bisiesto
 	bool esAnioBisiesto(void) const;
-	//Operacion que transforma una fecha a string
     string toString();
     bool esFechaPasada();
     double diasDeDiferenciaAFechaActual();
 
 };
-//Sobrecarga del operador - como funci�n
-//externa de la clase Fecha
+
 int operator-(Fecha fecha1, Fecha fecha2);
 tm cambiarFormatoaTM(Fecha fecha);
 string getNombreMes(int mes);
-#endif /* FECHA_H_ */
+#endif 

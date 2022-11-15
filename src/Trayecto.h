@@ -25,4 +25,4 @@ class Trayecto
 
 
 
-#endif /* TRAYECTO_H_ */
+#endif

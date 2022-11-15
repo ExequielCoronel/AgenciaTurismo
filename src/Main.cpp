@@ -15,8 +15,7 @@ using namespace std;
 #include "Hora.h"
 
 int main() {
-	Fecha fechaSalida(11,01,2023), fechaLlegada(12,01,2023);
-	PaquetePropio PP1("BRASIL",fechaSalida,7,5,30,0.20);
-	cout<<PP1.calcularCosto()<<endl;
+	
+
 	return 0;
 }

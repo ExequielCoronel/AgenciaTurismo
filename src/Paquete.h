@@ -8,17 +8,20 @@ using namespace std;
 class Paquete
 {
 	static long IA;
-	long codPaquete;
-	string destino;
-	Fecha fechaSalida;
-	int cantidadDias;
+
+	protected:
+		long codPaquete;
+		string destino;
+		Fecha fechaSalida;
+		int cantidadDias;
 
 	public:
 		Paquete(string destino, Fecha fechaSalida, int cantidadDias);
+		virtual long getCodigo() = 0;
 		virtual float calcularCosto() = 0;
 		virtual ~Paquete();
 };
 
 
 
-#endif /* PAQUETE_H_ */
+#endif

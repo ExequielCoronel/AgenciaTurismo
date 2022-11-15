@@ -1,7 +1,5 @@
 #include "PaquetePropio.h"
 
-// Falta realizar el metodo CalcularCosto();
-
 PaquetePropio::PaquetePropio(string destino, Fecha fechaSalida, int cantidadDias, int cantidadReservas, int cupoMaximoPasajeros, float descuento) : Paquete(destino, fechaSalida, cantidadDias)
 {
 	this->cantidadReservas = cantidadReservas;
@@ -9,35 +7,56 @@ PaquetePropio::PaquetePropio(string destino, Fecha fechaSalida, int cantidadDias
 	this->descuento = descuento;
 }
 
-float PaquetePropio::getDescuento(){return descuento;}
+float PaquetePropio::getDescuento()
+{
+	return descuento;
+}
 
 float PaquetePropio::calcularCosto()
 {
 	float costoTotal = 0;
-	for(Trayecto* trayecto:ListaTrayectos)
+
+	for (Trayecto *trayecto : ListaTrayectos)
 	{
 		costoTotal += trayecto->getCosto();
 	}
-	costoTotal = costoTotal*(1-descuento);
+	
+	costoTotal = costoTotal * (1 - descuento);
 	return costoTotal;
 }
 
-int PaquetePropio::getCantidadReservas(){return cantidadReservas;}
+long PaquetePropio::getCodigo()
+{
+	return codPaquete;
+}
 
-int PaquetePropio::getCupoMaxPasajeros(){return cupoMaxPasajeros;}
+int PaquetePropio::getCantidadReservas()
+{
+	return cantidadReservas;
+}
 
-void PaquetePropio::AgregarTrayecto(Trayecto *trayecto) {ListaTrayectos.push_back(trayecto);}
+int PaquetePropio::getCupoMaxPasajeros()
+{
+	return cupoMaxPasajeros;
+}
+
+void PaquetePropio::AgregarTrayecto(Trayecto *trayecto)
+{
+	ListaTrayectos.push_back(trayecto);
+}
 
 void PaquetePropio::EliminarTrayecto(long codTrayecto)
 {
-	for(int i=0;i<ListaTrayectos.size();i++)						//Se podria utilizar una clase iteradora
+	for (int i = 0; i < ListaTrayectos.size(); i++) // Se podria utilizar una clase iteradora
 	{
-		if(ListaTrayectos[i]->getCodTrayecto() == codTrayecto)
+		if (ListaTrayectos[i]->getCodTrayecto() == codTrayecto)
 		{
 			ListaTrayectos.erase(ListaTrayectos.begin() + i);
 		}
 	}
 }
 
-PaquetePropio::~PaquetePropio(){}
+PaquetePropio::~PaquetePropio()
+{
 
+}
