@@ -9,6 +9,7 @@
 class Reserva
 {
     static long AI;
+    const float PORCENTAJESENIA = 0.30;
     long CodigoReserva;
     Fecha fechaReserva;
     Fecha fechaCaducidad;
@@ -19,7 +20,7 @@ class Reserva
     bool reservaConfirmada;
 
 	public:
-    	Reserva(Fecha fechaReserva,Fecha fechaCaducidad,float senia, Agente Agente, Paquete* Paquete);
+    	Reserva(Fecha fechaReserva,Fecha fechaCaducidad, Agente Agente, Paquete* Paquete);
     	long getCodigoReserva();
     	Fecha getFechaReserva();
     	Fecha getFechaCaducidad();
@@ -27,7 +28,9 @@ class Reserva
     	Paquete* getPaquete();
     	bool AgregarPasajero(Pasajero*);
     	bool EliminarPasajero(long codPasajero);
+    	bool pagarSenia(long pagoSenia);
     	float getSenia();
+    	float SeniaMinima();
     	bool getPaqueteConfirmado();
     	void confirmarReserva();
     	~Reserva();

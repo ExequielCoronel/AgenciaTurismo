@@ -2,14 +2,14 @@
 
 long Reserva::AI=1;
 
-Reserva::Reserva(Fecha fechaReserva,Fecha fechaCaducidad,float senia, Agente Agente, Paquete* Paquete)
+Reserva::Reserva(Fecha fechaReserva,Fecha fechaCaducidad, Agente Agente, Paquete* Paquete)
 {
 	this->fechaReserva = fechaReserva;
 	this->fechaCaducidad = fechaCaducidad;
-	this->senia = senia;
+	this->senia = 0;
 	this->Agent = &Agente;
 	this->Packet = Paquete;
-	this->paqueteConfirmado = false;
+	this->reservaConfirmada = false;
 	CodigoReserva = AI;
 	AI++;
 }
@@ -25,6 +25,8 @@ Fecha Reserva::getFechaReserva(){return fechaReserva;}
 long Reserva::getCodigoReserva(){return CodigoReserva;}
 
 float Reserva::getSenia(){return senia;}
+
+float Reserva::SeniaMinima(){return Packet->calcularCosto()*PORCENTAJESENIA;}
 
 bool Reserva::AgregarPasajero(Pasajero *nuevoPasajero)
 {
@@ -44,7 +46,18 @@ bool Reserva::EliminarPasajero(long codPasajero)
 	return false;
 }
 
-void Reserva::confirmarReserva(){
+bool Reserva::pagarSenia(long senia)
+{
+	if(SeniaMinima()<senia && this->senia == 0)
+	{
+		this->senia = senia;
+		return true;
+	}
+	return false;
+}
+
+void Reserva::confirmarReserva()
+{
 
 	if(!this->fechaCaducidad.esFechaPasada() && !this->reservaConfirmada){
 		this->reservaConfirmada = true;

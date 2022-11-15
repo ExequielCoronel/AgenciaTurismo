@@ -11,6 +11,17 @@ PaquetePropio::PaquetePropio(string destino, Fecha fechaSalida, int cantidadDias
 
 float PaquetePropio::getDescuento(){return descuento;}
 
+float PaquetePropio::calcularCosto()
+{
+	float costoTotal = 0;
+	for(Trayecto* trayecto:ListaTrayectos)
+	{
+		costoTotal += trayecto->getCosto();
+	}
+	costoTotal = costoTotal*(1-descuento);
+	return costoTotal;
+}
+
 int PaquetePropio::getCantidadReservas(){return cantidadReservas;}
 
 int PaquetePropio::getCupoMaxPasajeros(){return cupoMaxPasajeros;}
