@@ -28,22 +28,17 @@ float Reserva::getSenia(){return senia;}
 
 float Reserva::SeniaMinima(){return Packet->calcularCosto()*PORCENTAJESENIA;}
 
-bool Reserva::AgregarPasajero(Pasajero *nuevoPasajero)
-{
-	if(ListadoPasajeros.push_back(nuevoPasajero)) return true;
-	return false;
-}
+void Reserva::AgregarPasajero(Pasajero *nuevoPasajero) {ListadoPasajeros.push_back(nuevoPasajero);}
 
-bool Reserva::EliminarPasajero(long codPasajero)
+void Reserva::EliminarPasajero(long codPasajero)
 {
 	for(int i=0;i<ListadoPasajeros.size();i++)									//Se podria utilizar una clase iteradora
 	{
 		if(ListadoPasajeros[i]->getCod() == codPasajero)
 		{
-			if(ListadoPasajeros.erase(ListadoPasajeros.begin() + i)) return true;
+			ListadoPasajeros.erase(ListadoPasajeros.begin() + i);
 		}
 	}
-	return false;
 }
 
 bool Reserva::pagarSenia(long senia)

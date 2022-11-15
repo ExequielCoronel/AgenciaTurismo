@@ -26,15 +26,15 @@ class Reserva
     	Fecha getFechaCaducidad();
     	Agente getAgente();
     	Paquete* getPaquete();
-    	bool AgregarPasajero(Pasajero*);
-    	bool EliminarPasajero(long codPasajero);
+    	void AgregarPasajero(Pasajero*);
+    	void EliminarPasajero(long codPasajero);
     	bool pagarSenia(long pagoSenia);
     	float getSenia();
     	float SeniaMinima();
     	bool getPaqueteConfirmado();
     	void confirmarReserva();
     	~Reserva();
-}
+};
 
 
 

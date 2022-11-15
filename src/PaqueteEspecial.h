@@ -16,13 +16,13 @@ class PaqueteEspecial : public Paquete
 	public:
 		PaqueteEspecial(string destino,Fecha fechaSalida,int cantidadDias,float comisionAgencia);
 		float getComisionAgencia();
-		bool AgregarVuelo(string,string,Fecha,Hora,Fecha,Hora,float,float);
-		bool AgregarHotel(string,string,Fecha,Fecha,int,float);
-		bool EliminarVuelo(long);
-		bool EliminarHotel(long);
+		void AgregarVuelo(string,string,Fecha,Hora,Fecha,Hora,float,float);
+		void AgregarHotel(string,string,Fecha,Fecha,int,float);
+		void EliminarVuelo(long);
+		void EliminarHotel(long);
 		float calcularCosto();
 		~PaqueteEspecial();
-}
+};
 
 
 

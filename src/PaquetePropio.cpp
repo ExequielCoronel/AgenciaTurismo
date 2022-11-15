@@ -26,22 +26,17 @@ int PaquetePropio::getCantidadReservas(){return cantidadReservas;}
 
 int PaquetePropio::getCupoMaxPasajeros(){return cupoMaxPasajeros;}
 
-bool PaquetePropio::AgregarTrayecto(Trayecto *trayecto)
-{
-	if(ListaTrayectos.push_back(trayecto)) return true;
-	return false;
-}
+void PaquetePropio::AgregarTrayecto(Trayecto *trayecto) {ListaTrayectos.push_back(trayecto);}
 
-bool PaquetePropio::EliminarTrayecto(long codTrayecto)
+void PaquetePropio::EliminarTrayecto(long codTrayecto)
 {
 	for(int i=0;i<ListaTrayectos.size();i++)						//Se podria utilizar una clase iteradora
 	{
 		if(ListaTrayectos[i]->getCodTrayecto() == codTrayecto)
 		{
-			if(ListaTrayectos.erase(ListaTrayectos.begin() + i)) return true;
+			ListaTrayectos.erase(ListaTrayectos.begin() + i);
 		}
 	}
-	return false;
 }
 
 PaquetePropio::~PaquetePropio(){}

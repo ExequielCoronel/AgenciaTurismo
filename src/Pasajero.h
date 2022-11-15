@@ -7,7 +7,7 @@ using namespace std;
 
 class Pasajero
 {
-	static long AI = 0;
+	static long AI;
 	long codPasajero;
 	string nombre;
 	string apellido;

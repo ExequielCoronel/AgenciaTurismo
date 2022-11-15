@@ -4,42 +4,38 @@ PaqueteEspecial::PaqueteEspecial(string destino, Fecha fechaSalida, int cantidad
 
 float PaqueteEspecial::getComisionAgencia(){return comisionAgencia;}
 
-bool PaqueteEspecial::AgregarVuelo(string lineaAerea, string operadorVuelo, Fecha fechaSalida, Hora horaSalida, Fecha fechaLlegada, Hora horaLlegada, float tarifaPorMenor, float tarifaPorMayor)
+void PaqueteEspecial::AgregarVuelo(string lineaAerea, string operadorVuelo, Fecha fechaSalida, Hora horaSalida, Fecha fechaLlegada, Hora horaLlegada, float tarifaPorMenor, float tarifaPorMayor)
 {
-	ContratacionVuelo *nuevaContratacionVuelo(lineaAerea, operadorVuelo, fechaSalida, horaSalida, fechaLlegada, horaLlegada,tarifaPorMenor, tarifaPorMayor);
-	if(vuelosContratados.push_back(nuevaContratacionVuelo)) return true;
-	return false;
+	ContratacionVuelo nuevaContratacionVuelo(lineaAerea, operadorVuelo, fechaSalida, horaSalida, fechaLlegada, horaLlegada, tarifaPorMenor, tarifaPorMayor);
+	vuelosContratados.push_back(&nuevaContratacionVuelo);
 }
 
-bool PaqueteEspecial::AgregarHotel(string nombreHotel,string ubicacion,Fecha CheckIn,Fecha CheckOut,int cantidadNoches,float precioNoche)
+void PaqueteEspecial::AgregarHotel(string nombreHotel,string ubicacion,Fecha CheckIn,Fecha CheckOut,int cantidadNoches,float precioNoche)
 {
-	ContratacionHotel *nuevaContratacionHotel(nombreHotel,ubicacion,CheckIn,CheckOut,cantidadNoches,precioNoche);
-	if(hotelesContratados.push_back(nuevaContratacionHotel)) return true;
-	return false;
+	ContratacionHotel nuevaContratacionHotel(nombreHotel,ubicacion,CheckIn,CheckOut,cantidadNoches,precioNoche);
+	hotelesContratados.push_back(&nuevaContratacionHotel);
 }
 
-bool PaqueteEspecial::EliminarHotel(long codHotel)
+void PaqueteEspecial::EliminarHotel(long codHotel)
 {
 	for(int i=0; i<hotelesContratados.size();i++)
 	{																		//Se podria utilizar un Iterador
 		if(codHotel == hotelesContratados[i]->getCodContratacionHotel())
 		{
-			if(hotelesContratados.erase(hotelesContratados.begin() + i)) return true;
+			hotelesContratados.erase(hotelesContratados.begin() + i);
 		}
 	}
-	return false;
 }
 
-bool PaqueteEspecial::EliminarVuelo(long codVuelo)
+void PaqueteEspecial::EliminarVuelo(long codVuelo)
 {
 	for(int i=0; i<vuelosContratados.size();i++)
 	{																		//Se podria utilizar un Iterador
 		if(codVuelo == vuelosContratados[i]->getCodContratacionV())
 		{
-			if(vuelosContratados.erase(vuelosContratados.begin() + i)) return true;
+			vuelosContratados.erase(vuelosContratados.begin() + i);
 		}
 	}
-	return false;
 }
 
 float PaqueteEspecial::calcularCosto(){
@@ -59,4 +55,20 @@ float PaqueteEspecial::calcularCosto(){
 	return total;
 }
 
-PaqueteEspecial::~PaqueteEspecial(){}
+PaqueteEspecial::~PaqueteEspecial()
+{
+	int i=0;
+	while(!vuelosContratados.empty())
+	{
+		delete vuelosContratados[i];
+		i++;
+	}
+	vuelosContratados.clear();
+	i=0;
+	while(!hotelesContratados.empty())
+	{
+		delete hotelesContratados[i];
+		i++;
+	}
+	hotelesContratados.clear();
+}
