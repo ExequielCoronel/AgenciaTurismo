@@ -9,13 +9,13 @@ class PaquetePropio : public Paquete
 {
 	vector<Trayecto*> ListaTrayectos;
 	int cupoMaxPasajeros;
-	int cantidadReservas;
+	int cantidadPersonas;
 	float descuento;
 
 	public:
-		PaquetePropio(string destino,Fecha fechaSalida,int cantidadDias,int cantidadReservas,int cupoMaximoPasajeros,float descuento);
+		PaquetePropio(string destino, Fecha fechaSalida, int cantidadDias, int cupoMaximoPasajeros, float descuento);
 		int getCupoMaxPasajeros();
-		int getCantidadReservas();
+		bool ingresarPersonas(int cantidad);
 		float getDescuento();
 		float calcularCosto();
 		long getCodigo();

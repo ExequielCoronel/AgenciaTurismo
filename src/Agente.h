@@ -1,13 +1,12 @@
 #ifndef AGENTE_H_
 #define AGENTE_H_
 
-
 #include <iostream>
 using namespace std;
 
 class Agente
 {
-	static long IA;
+	static long AI;
 	long codAgente;
 	string nombre;
 	string apellido;
@@ -23,4 +22,4 @@ class Agente
 
 
 
-#endif /* AGENTE_H_ */
+#endif

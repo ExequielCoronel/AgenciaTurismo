@@ -1,8 +1,8 @@
 #include "Contratacion.h"
 
-long Contratacion::IA = 1;
+long Contratacion::AI = 1;
 
 Contratacion::Contratacion(){
-    this->codigo = IA;
-    IA++;
+    this->codigo = AI;
+    AI++;
 }

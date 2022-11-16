@@ -7,7 +7,7 @@ using namespace std;
 
 class Paquete
 {
-	static long IA;
+	static long AI;
 
 	protected:
 		long codPaquete;

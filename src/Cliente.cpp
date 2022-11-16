@@ -1,20 +1,16 @@
 #include "Cliente.h"
 
-long Cliente::IA = 1;
-
-Cliente::Cliente()
-{
-}
+long Cliente::AI = 1;
 
 Cliente::Cliente(string nombre, string apellido, long dni, long pasaporte, Fecha fechaNacimiento)
 {
-    this->codCliente = IA;
+    this->codCliente = AI;
     this->nombre = nombre;
     this->apellido = apellido;
     this->dni = dni;
     this->pasaporte = pasaporte;
     this->fechaNacimiento = fechaNacimiento;
-    IA++;
+    AI++;
 }
 
 long Cliente::getCodigo()
@@ -45,4 +41,9 @@ long Cliente::getPasaporte()
 Fecha Cliente::getFechaNacimiento()
 {
     return this->fechaNacimiento;
+}
+
+Cliente::~Cliente()
+{
+
 }

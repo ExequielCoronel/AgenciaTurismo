@@ -4,7 +4,7 @@
 #include <vector>
 #include "Paquete.h"
 #include "Agente.h"
-#include "Pasajero.h"
+#include "Cliente.h"
 
 class Reserva
 {
@@ -14,19 +14,20 @@ class Reserva
 	Fecha fechaReserva;
 	Fecha fechaCaducidad;
 	Agente *Agent;
-	vector<Pasajero *> ListadoPasajeros;
+	vector<Cliente*> ListadoPasajeros;
 	Paquete *Packet;
+	int cantPersonas;
 	float senia;
 	bool reservaConfirmada;
 
 	public:
-		Reserva(Fecha fechaReserva, Fecha fechaCaducidad, Agente *Agente, Paquete *Paquete);
+		Reserva(Fecha fechaReserva, Fecha fechaCaducidad, int cantPersonas, Agente *Agente, Paquete *Paquete);
 		long getCodigoReserva();
 		Fecha getFechaReserva();
 		Fecha getFechaCaducidad();
 		Agente getAgente();
 		Paquete *getPaquete();
-		void AgregarPasajero(Pasajero *);
+		void AgregarPasajero(Cliente*);
 		void EliminarPasajero(long codPasajero);
 		bool pagarSenia(long pagoSenia);
 		float getSenia();

@@ -1,8 +1,7 @@
 #include "PaquetePropio.h"
 
-PaquetePropio::PaquetePropio(string destino, Fecha fechaSalida, int cantidadDias, int cantidadReservas, int cupoMaximoPasajeros, float descuento) : Paquete(destino, fechaSalida, cantidadDias)
+PaquetePropio::PaquetePropio(string destino, Fecha fechaSalida, int cantidadDias, int cupoMaximoPasajeros, float descuento) : Paquete(destino, fechaSalida, cantidadDias)
 {
-	this->cantidadReservas = cantidadReservas;
 	cupoMaxPasajeros = cupoMaximoPasajeros;
 	this->descuento = descuento;
 }
@@ -20,7 +19,7 @@ float PaquetePropio::calcularCosto()
 	{
 		costoTotal += trayecto->getCosto();
 	}
-	
+
 	costoTotal = costoTotal * (1 - descuento);
 	return costoTotal;
 }
@@ -30,9 +29,17 @@ long PaquetePropio::getCodigo()
 	return codPaquete;
 }
 
-int PaquetePropio::getCantidadReservas()
+bool PaquetePropio::ingresarPersonas(int cantidad)
 {
-	return cantidadReservas;
+	if ((cantidadPersonas + cantidad) > cupoMaxPasajeros)
+	{
+		return false;
+	}
+	else
+	{
+		cantidadPersonas += cantidad;
+		return true;
+	}
 }
 
 int PaquetePropio::getCupoMaxPasajeros()
@@ -58,5 +65,4 @@ void PaquetePropio::EliminarTrayecto(long codTrayecto)
 
 PaquetePropio::~PaquetePropio()
 {
-
 }

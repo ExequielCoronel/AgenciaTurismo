@@ -59,7 +59,7 @@ void Empresa::eliminarCliente(long codigo)
     }
 }
 
-void Empresa::crearReserva(Fecha fechaReserva, Fecha fechaCaducidad, long codAgente, long codPaquete)
+void Empresa::crearReserva(Fecha fechaReserva, Fecha fechaCaducidad, int cantPersonas, long codAgente, long codPaquete)
 {
     Agente *empleado;
     Paquete *paquete;
@@ -76,20 +76,67 @@ void Empresa::crearReserva(Fecha fechaReserva, Fecha fechaCaducidad, long codAge
         }
     }
 
-    // Obtener el paquete según el código
-    for (Paquete *p : paquetes)
+    // Obtener en paquete propio según el código
+    for (PaquetePropio *p : paquetesPropios)
     {
         if (p->getCodigo() == codPaquete)
         {
-            paquete = p;
-            encontradoPaquete = true;
-            break;
+            if(p->ingresarPersonas(cantPersonas))
+            {
+                paquete = p;
+                encontradoPaquete = true;
+                break;
+            }
+            else
+            {
+                return;
+            }
+            
+        }
+    }
+
+    // En caso de no encontrar el código en los paquetes propios, buscar en el paquete especial
+    if (!encontradoPaquete)
+    {
+        for (PaqueteEspecial *p : paquetesEspeciales)
+        {
+            if (p->getCodigo() == codPaquete)
+            {
+                paquete = p;
+                encontradoPaquete = true;
+                break;
+            }
         }
     }
 
     if (encontradoEmpleado && encontradoPaquete)
     {
-        reservas.push_back(new Reserva(fechaReserva, fechaCaducidad, empleado, paquete));
+        reservas.push_back(new Reserva(fechaReserva, fechaCaducidad, cantPersonas, empleado, paquete));
+    }
+}
+
+void Empresa::pagarReserva(long codigo)
+{
+
+}
+
+void Empresa::eliminarReserva(long codigo)
+{
+    int index;
+    bool encontrado = false;
+
+    for (index = 0; index < reservas.size() && !encontrado; index++)
+    {
+        if (reservas[index]->getCodigoReserva() == codigo)
+        {
+            encontrado = true;
+        }
+    }
+
+    if (encontrado)
+    {
+        delete reservas[index];
+        reservas.erase(reservas.begin() + index);
     }
 }
 
@@ -118,26 +165,26 @@ void Empresa::eliminarTrayecto(long codigo)
     }
 }
 
-void Empresa::ingresarPaquetePropio(string destino, Fecha fechaSalida, int cantidadDias, int cantidadReservas, int cupoMaximoPasajeros, float descuento)
+void Empresa::ingresarPaquetePropio(string destino, Fecha fechaSalida, int cantidadDias, int cupoMaximoPasajeros, float descuento)
 {
-    paquetes.push_back(new PaquetePropio(destino, fechaSalida, cantidadDias, cantidadReservas, cupoMaximoPasajeros, descuento));
+    paquetesPropios.push_back(new PaquetePropio(destino, fechaSalida, cantidadDias, cupoMaximoPasajeros, descuento));
 }
 
 void Empresa::ingresarPaqueteEspecial(string destino, Fecha fechaSalida, int cantidadDias, float comisionAgencia)
 {
-    paquetes.push_back(new PaqueteEspecial(destino, fechaSalida, cantidadDias, comisionAgencia));
+    paquetesEspeciales.push_back(new PaqueteEspecial(destino, fechaSalida, cantidadDias, comisionAgencia));
 }
 
 void Empresa::ingresarTrayectoEnPaquete(long codPaquete, long codTrayecto)
 {
-    Paquete *paquete;
+    PaquetePropio *paquete;
     Trayecto *trayecto;
     bool encPaquete = false, encTrayecto = false;
 
     // Buscar el paquete según el código
-    for(Paquete* p: paquetes)
+    for (PaquetePropio *p : paquetesPropios)
     {
-        if(p->getCodigo() == codPaquete)
+        if (p->getCodigo() == codPaquete)
         {
             paquete = p;
             encPaquete = true;
@@ -146,42 +193,60 @@ void Empresa::ingresarTrayectoEnPaquete(long codPaquete, long codTrayecto)
     }
 
     // Buscar el trayecto según el código
-    for(Trayecto* t: trayectos)
+    for (Trayecto *t : trayectos)
     {
-        if(t->getCodTrayecto() == codTrayecto)
+        if (t->getCodTrayecto() == codTrayecto)
         {
             trayecto = t;
             encTrayecto = true;
             break;
         }
     }
+
+    if (encPaquete && encTrayecto)
+    {
+        paquete->AgregarTrayecto(trayecto);
+    }
 }
 
 void Empresa::ingresarContVueloEnPaquete(long codPaquete, string lineaAerea, string operadorVuelo, Fecha fechaSalida, Hora horaSalida, Fecha fechaLlegada, Hora horaLlegada, float tarifaPorMenor, float tarifaPorMayor, int cantMayores, int cantMenores)
 {
-    Paquete *paquete;
+    PaqueteEspecial *paquete;
     bool encPaquete = false;
 
     // Buscar el paquete según el código
-    for(Paquete* p: paquetes)
+    for (PaqueteEspecial *p : paquetesEspeciales)
     {
-        if(p->getCodigo() == codPaquete)
+        if (p->getCodigo() == codPaquete)
         {
             paquete = p;
             encPaquete = true;
             break;
         }
     }
+
+    if(encPaquete)
+    {
+        paquete->agregarVuelo(lineaAerea, operadorVuelo, fechaSalida, horaSalida, fechaLlegada, horaLlegada, tarifaPorMenor, tarifaPorMayor, cantMayores, cantMenores);
+    }
 }
 
 void Empresa::eliminarPaquete(long codigo)
 {
-    int index;
+    int index, tipoPaquete;
     bool encontrado = false;
 
-    for (index = 0; index < paquetes.size() && !encontrado; index++)
+    for (index = 0; index < paquetesPropios.size() && !encontrado; index++)
     {
-        if (paquetes[index]->getCodigo() == codigo)
+        if (paquetesPropios[index]->getCodigo() == codigo)
+        {
+            encontrado = true;
+        }
+    }
+
+    for (index = 0; index < paquetesEspeciales.size() && !encontrado; index++)
+    {
+        if (paquetesEspeciales[index]->getCodigo() == codigo)
         {
             encontrado = true;
         }
@@ -189,7 +254,59 @@ void Empresa::eliminarPaquete(long codigo)
 
     if (encontrado)
     {
-        delete paquetes[index];
-        paquetes.erase(paquetes.begin() + index);
+        if(tipoPaquete == 1)
+        {
+            delete paquetesPropios[index];
+            paquetesPropios.erase(paquetesPropios.begin() + index);
+        }
+        else{
+            delete paquetesEspeciales[index];
+            paquetesEspeciales.erase(paquetesEspeciales.begin() + index);
+        }
     }
+}
+
+Empresa::~Empresa()
+{
+    for(int i = 0; i < empleados.size(); i++)
+    {
+        delete empleados[i];
+    }
+
+    for(int i = 0; i < clientes.size(); i++)
+    {
+        delete clientes[i];
+    }
+
+    for(int i = 0; i < trayectos.size(); i++)
+    {
+        delete trayectos[i];
+    }
+
+    for(int i = 0; i < reservas.size(); i++)
+    {
+        delete reservas[i];
+    }
+
+    for(int i = 0; i < paquetesPropios.size(); i++)
+    {
+        delete paquetesPropios[i];
+    }
+
+    for(int i = 0; i < paquetesEspeciales.size(); i++)
+    {
+        delete paquetesEspeciales[i];
+    }
+
+    empleados.clear();
+    clientes.clear();
+    trayectos.clear();
+    reservas.clear();
+    paquetesPropios.clear();
+    paquetesEspeciales.clear();
+}
+
+void Empresa::getInfo()
+{
+    
 }

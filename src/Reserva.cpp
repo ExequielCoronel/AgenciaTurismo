@@ -2,13 +2,14 @@
 
 long Reserva::AI = 1;
 
-Reserva::Reserva(Fecha fechaReserva, Fecha fechaCaducidad, Agente *Agente, Paquete *Paquete)
+Reserva::Reserva(Fecha fechaReserva, Fecha fechaCaducidad, int cantPersonas, Agente *Agente, Paquete *Paquete)
 {
 	this->fechaReserva = fechaReserva;
 	this->fechaCaducidad = fechaCaducidad;
 	this->senia = 0;
 	this->Agent = Agente;
 	this->Packet = Paquete;
+	this->cantPersonas = cantPersonas;
 	this->reservaConfirmada = false;
 	CodigoReserva = AI;
 	AI++;
@@ -49,7 +50,7 @@ float Reserva::SeniaMinima()
 	return Packet->calcularCosto() * PORCENTAJESENIA;
 }
 
-void Reserva::AgregarPasajero(Pasajero *nuevoPasajero)
+void Reserva::AgregarPasajero(Cliente* nuevoPasajero)
 {
 	ListadoPasajeros.push_back(nuevoPasajero);
 }
@@ -58,7 +59,7 @@ void Reserva::EliminarPasajero(long codPasajero)
 {
 	for (int i = 0; i < ListadoPasajeros.size(); i++) // Se podria utilizar una clase iteradora
 	{
-		if (ListadoPasajeros[i]->getCod() == codPasajero)
+		if (ListadoPasajeros[i]->getCodigo() == codPasajero)
 		{
 			ListadoPasajeros.erase(ListadoPasajeros.begin() + i);
 		}
@@ -72,12 +73,12 @@ bool Reserva::pagarSenia(long senia)
 		this->senia = senia;
 		return true;
 	}
+
 	return false;
 }
 
 void Reserva::confirmarReserva()
 {
-
 	if (!this->fechaCaducidad.esFechaPasada() && !this->reservaConfirmada)
 	{
 		this->reservaConfirmada = true;

@@ -3,15 +3,15 @@
 
 #include "Paquete.h"
 
-long Paquete::IA=1;
+long Paquete::AI = 1;
 
 Paquete::Paquete(string Destino, Fecha FechaSalida, int cantidadDias)
 {
 	this->cantidadDias = cantidadDias;
-	codPaquete = IA;
+	codPaquete = AI;
 	destino = Destino;
 	fechaSalida = FechaSalida;
-	IA++;
+	AI++;
 }
 
 Paquete::~Paquete(){}

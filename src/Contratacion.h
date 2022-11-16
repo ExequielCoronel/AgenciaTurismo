@@ -2,7 +2,7 @@
 #define CONTRATACION_H
 
 class Contratacion{
-    static long IA;
+    static long AI;
     
     protected:
         long codigo;

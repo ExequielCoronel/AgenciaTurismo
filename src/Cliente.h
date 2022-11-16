@@ -8,7 +8,7 @@ using namespace std;
 
 class Cliente
 {
-	static long IA;
+	static long AI;
     long codCliente;
 	string nombre;
 	string apellido;
@@ -17,7 +17,6 @@ class Cliente
     Fecha fechaNacimiento;
 
     public:
-        Cliente();
         Cliente(string nombre, string apellido, long dni, long pasaporte, Fecha fechaNacimiento);
         long getCodigo();
         string getNombre();
@@ -25,6 +24,7 @@ class Cliente
         long getDni();
         long getPasaporte();
         Fecha getFechaNacimiento();
+        ~Cliente();
 };
 
 #endif
