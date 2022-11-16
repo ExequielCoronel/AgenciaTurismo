@@ -4,6 +4,7 @@
 #include "Paquete.h"
 #include <vector>
 #include "Trayecto.h"
+#include "Contratacion.h"
 
 class PaquetePropio : public Paquete
 {
@@ -18,9 +19,10 @@ class PaquetePropio : public Paquete
 		bool ingresarPersonas(int cantidad);
 		float getDescuento();
 		float calcularCosto();
-		long getCodigo();
-		void AgregarTrayecto(Trayecto*);
-		void EliminarTrayecto(long codTrayecto);
+		void ingresarTrayecto(Trayecto* trayecto);
+		void ingresarContratacion(Contratacion* contratacion);
+		void eliminarTrayecto(long codigo);
+		void eliminarContratacion(long codigo);
 		~PaquetePropio();
 };
 

@@ -9,8 +9,8 @@ class Contratacion{
 
     public:
         Contratacion();
+        long getCodigo();
         virtual float calcularCostoContratacion() = 0;
-        virtual long getCodigo() = 0;
 };
 
 #endif

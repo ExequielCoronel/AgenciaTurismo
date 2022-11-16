@@ -28,5 +28,13 @@ int main() {
 	empresa.ingresarCliente("Ezequiel", "Acosta", 43564834, 420691997078, Fecha(27, 9, 2001));
 
 
+	// Añadir trayectos
+	empresa.ingresarTrayecto("Tucuman", "Famailla", 1, 250);
+	empresa.ingresarTrayecto("Tucuman", "Simoca", 1, 400);
+	empresa.ingresarTrayecto("Tucuman", "Buenos Aires", 2, 20000);
+	empresa.ingresarTrayecto("Tucuman", "Salta", 1, 10000);
+
+	empresa.getInfo();
+
 	return 0;
 }

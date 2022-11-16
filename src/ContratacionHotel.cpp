@@ -40,11 +40,6 @@ float ContratacionHotel::getPrecioXNoche()
     return this->precioNoche;
 }
 
-long ContratacionHotel::getCodigo()
-{
-    return codigo;
-}
-
 float ContratacionHotel::calcularCostoContratacion()
 {
 

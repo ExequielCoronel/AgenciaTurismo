@@ -24,11 +24,6 @@ float PaquetePropio::calcularCosto()
 	return costoTotal;
 }
 
-long PaquetePropio::getCodigo()
-{
-	return codPaquete;
-}
-
 bool PaquetePropio::ingresarPersonas(int cantidad)
 {
 	if ((cantidadPersonas + cantidad) > cupoMaxPasajeros)
@@ -47,22 +42,34 @@ int PaquetePropio::getCupoMaxPasajeros()
 	return cupoMaxPasajeros;
 }
 
-void PaquetePropio::AgregarTrayecto(Trayecto *trayecto)
+void PaquetePropio::ingresarTrayecto(Trayecto *trayecto)
 {
 	ListaTrayectos.push_back(trayecto);
 }
 
-void PaquetePropio::EliminarTrayecto(long codTrayecto)
+void PaquetePropio::ingresarContratacion(Contratacion* contratacion)
 {
-	for (int i = 0; i < ListaTrayectos.size(); i++) // Se podria utilizar una clase iteradora
+	
+}
+
+void PaquetePropio::eliminarTrayecto(long codigo)
+{
+	for (int i = 0; i < ListaTrayectos.size(); i++)
 	{
-		if (ListaTrayectos[i]->getCodTrayecto() == codTrayecto)
+		if (ListaTrayectos[i]->getCodTrayecto() == codigo)
 		{
 			ListaTrayectos.erase(ListaTrayectos.begin() + i);
+			break;
 		}
 	}
 }
 
+void PaquetePropio::eliminarContratacion(long codigo)
+{
+
+}
+
 PaquetePropio::~PaquetePropio()
 {
+
 }

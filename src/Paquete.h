@@ -17,8 +17,13 @@ class Paquete
 
 	public:
 		Paquete(string destino, Fecha fechaSalida, int cantidadDias);
-		virtual long getCodigo() = 0;
+		long getCodigo();
 		virtual float calcularCosto() = 0;
+		virtual void ingresarContratacion(Contratacion* contratacion) = 0;
+		virtual void ingresarTrayecto(Trayecto* trayecto) = 0;
+		virtual void eliminarContratacion(long codigo) = 0;
+		virtual void eliminarTrayecto(long codigo) = 0;
+		Fecha getFechaSalida();
 		virtual ~Paquete();
 };
 

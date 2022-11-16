@@ -6,6 +6,7 @@
 #include "ContratacionHotel.h"
 #include "ContratacionVuelo.h"
 #include "Contratacion.h"
+#include "Trayecto.h"
 
 class PaqueteEspecial : public Paquete
 {
@@ -15,10 +16,10 @@ class PaqueteEspecial : public Paquete
 	public:
 		PaqueteEspecial(string destino, Fecha fechaSalida, int cantidadDias, float comisionAgencia);
 		float getComisionAgencia();
-		void agregarVuelo(string lineaAerea, string operadorVuelo, Fecha fechaSalida, Hora horaSalida, Fecha fechaLlegada, Hora horaLlegada, float tarifaPorMenor, float tarifaPorMayor, int cantMayores, int cantMenores);
-		void agregarHotel(string nombreHotel, string ubicacion, Fecha CheckIn, Fecha CheckOut, int cantidadNoches, float precioNoche);
+		void ingresarTrayecto(Trayecto* trayecto);
+		void ingresarContratacion(Contratacion* contratacion);
 		void eliminarContratacion(long codigo);
-		long getCodigo();
+		void eliminarTrayecto(long codigo);
 		float calcularCosto();
 		~PaqueteEspecial();
 };

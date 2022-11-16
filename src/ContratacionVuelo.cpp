@@ -54,11 +54,6 @@ float ContratacionVuelo::getTarifaPorMayor()
     return this->tarifaPorMayor;
 }
 
-long ContratacionVuelo::getCodigo()
-{
-    return codigo;
-}
-
 float ContratacionVuelo::calcularCostoContratacion()
 {
     return (this->tarifaPorMayor * this->cantMayores) + (this->tarifaPorMenor * this->cantMenores);

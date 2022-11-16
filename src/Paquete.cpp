@@ -1,6 +1,3 @@
-#ifndef PAQUETE_CPP_
-#define PAQUETE_CPP_
-
 #include "Paquete.h"
 
 long Paquete::AI = 1;
@@ -14,9 +11,15 @@ Paquete::Paquete(string Destino, Fecha FechaSalida, int cantidadDias)
 	AI++;
 }
 
-Paquete::~Paquete(){}
+long Paquete::getCodigo()
+{
+	return codPaquete;
+}
 
+Fecha Paquete::getFechaSalida(){
+	return fechaSalida;
+}
 
-
-
-#endif
+Paquete::~Paquete()
+{
+}

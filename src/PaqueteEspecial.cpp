@@ -10,19 +10,13 @@ float PaqueteEspecial::getComisionAgencia()
 	return comisionAgencia;
 }
 
-void PaqueteEspecial::agregarVuelo(string lineaAerea, string operadorVuelo, Fecha fechaSalida, Hora horaSalida, Fecha fechaLlegada, Hora horaLlegada, float tarifaPorMenor, float tarifaPorMayor, int cantMayores, int cantMenores)
+void PaqueteEspecial::ingresarTrayecto(Trayecto* trayecto)
 {
-	contrataciones.push_back(new ContratacionVuelo(lineaAerea, operadorVuelo, fechaSalida, horaSalida, fechaLlegada, horaLlegada, tarifaPorMenor, tarifaPorMayor, cantMayores, cantMenores));
+	
 }
 
-void PaqueteEspecial::agregarHotel(string nombreHotel, string ubicacion, Fecha CheckIn, Fecha CheckOut, int cantidadNoches, float precioNoche)
-{
-	contrataciones.push_back(new ContratacionHotel(nombreHotel, ubicacion, CheckIn, CheckOut, cantidadNoches, precioNoche));
-}
-
-long PaqueteEspecial::getCodigo()
-{
-	return codPaquete;
+void PaqueteEspecial::ingresarContratacion(Contratacion* contratacion){
+	contrataciones.push_back(contratacion);
 }
 
 void PaqueteEspecial::eliminarContratacion(long codigo)
@@ -43,6 +37,11 @@ void PaqueteEspecial::eliminarContratacion(long codigo)
 		delete contrataciones[index];
 		contrataciones.erase(contrataciones.begin() + index);
 	}
+}
+
+void PaqueteEspecial::eliminarTrayecto(long codigo)
+{
+
 }
 
 float PaqueteEspecial::calcularCosto()
