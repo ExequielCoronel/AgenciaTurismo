@@ -4,6 +4,7 @@
 #include "iostream"
 using namespace std;
 #include "Fecha.h"
+#include "Contratacion.h"
 
 class Paquete
 {
@@ -23,6 +24,7 @@ class Paquete
 		virtual void ingresarTrayecto(Trayecto* trayecto) = 0;
 		virtual void eliminarContratacion(long codigo) = 0;
 		virtual void eliminarTrayecto(long codigo) = 0;
+		virtual int cantidadContrataciones() = 0;
 		Fecha getFechaSalida();
 		virtual ~Paquete();
 };

@@ -10,6 +10,8 @@ float PaqueteEspecial::getComisionAgencia()
 	return comisionAgencia;
 }
 
+int PaqueteEspecial::cantidadContrataciones(){ return contrataciones.size();}
+
 void PaqueteEspecial::ingresarTrayecto(Trayecto* trayecto)
 {
 	

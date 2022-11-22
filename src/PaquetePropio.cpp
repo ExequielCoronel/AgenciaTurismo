@@ -1,6 +1,6 @@
 #include "PaquetePropio.h"
 
-PaquetePropio::PaquetePropio(string destino, Fecha fechaSalida, int cantidadDias, int cupoMaximoPasajeros, float descuento) : Paquete(destino, fechaSalida, cantidadDias)
+PaquetePropio::PaquetePropio(string destino, Fecha fechaSalida, int cantidadDias, int cupoMaximoPasajeros, float descuento) : Paquete(destino, fechaSalida, cantidadDias) // @suppress("Class members should be properly initialized")
 {
 	cupoMaxPasajeros = cupoMaximoPasajeros;
 	this->descuento = descuento;
@@ -21,8 +21,11 @@ float PaquetePropio::calcularCosto()
 	}
 
 	costoTotal = costoTotal * (1 - descuento);
+
 	return costoTotal;
 }
+
+int PaquetePropio::cantidadContrataciones(){return 0;}
 
 bool PaquetePropio::ingresarPersonas(int cantidad)
 {

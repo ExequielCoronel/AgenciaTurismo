@@ -16,6 +16,7 @@ class PaqueteEspecial : public Paquete
 	public:
 		PaqueteEspecial(string destino, Fecha fechaSalida, int cantidadDias, float comisionAgencia);
 		float getComisionAgencia();
+		int cantidadContrataciones();
 		void ingresarTrayecto(Trayecto* trayecto);
 		void ingresarContratacion(Contratacion* contratacion);
 		void eliminarContratacion(long codigo);

@@ -19,6 +19,7 @@ class PaquetePropio : public Paquete
 		bool ingresarPersonas(int cantidad);
 		float getDescuento();
 		float calcularCosto();
+		int cantidadContrataciones();
 		void ingresarTrayecto(Trayecto* trayecto);
 		void ingresarContratacion(Contratacion* contratacion);
 		void eliminarTrayecto(long codigo);

@@ -209,11 +209,17 @@ void Empresa::eliminarContratacion(long codigo)
             encontrado = true;
         }
     }
-
-    // Buscar la contratación en cada paquete y eliminarla del paquete
-
     if (encontrado)
     {
+    	for(int i=0; i<paquetes.size();i++)
+    	{
+    		paquetes[i]->eliminarContratacion(codigo);
+    		if(paquetes[i]->cantidadContrataciones() == 0)
+    		{
+    			delete paquetes[i];
+    			paquetes.erase(paquetes.begin() + i);
+    		}
+    	}
         delete contrataciones[index];
         contrataciones.erase(contrataciones.begin() + index);
     }
