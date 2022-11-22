@@ -31,6 +31,7 @@ class ContratacionVuelo: public Contratacion
 		float getTarifaPorMenor();
 		float getTarifaPorMayor();
 		float calcularCostoContratacion();
+		void getInfo();
 		~ContratacionVuelo();
 };
 

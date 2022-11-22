@@ -7,6 +7,11 @@ long Contratacion::getCodigo()
     return codigo;
 }
 
+void Contratacion::getInfo()
+{
+    cout << "Codigo: " << getCodigo() << endl;
+}
+
 Contratacion::Contratacion(){
     this->codigo = AI;
     AI++;

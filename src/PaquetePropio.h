@@ -19,11 +19,12 @@ class PaquetePropio : public Paquete
 		bool ingresarPersonas(int cantidad);
 		float getDescuento();
 		float calcularCosto();
-		int cantidadContrataciones();
 		void ingresarTrayecto(Trayecto* trayecto);
 		void ingresarContratacion(Contratacion* contratacion);
+		int cantidadContrataciones();
 		void eliminarTrayecto(long codigo);
 		void eliminarContratacion(long codigo);
+		void getInfo();
 		~PaquetePropio();
 };
 

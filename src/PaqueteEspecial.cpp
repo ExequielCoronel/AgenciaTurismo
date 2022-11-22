@@ -48,7 +48,6 @@ void PaqueteEspecial::eliminarTrayecto(long codigo)
 
 float PaqueteEspecial::calcularCosto()
 {
-
 	float total = 0;
 
 	for (Contratacion *cont : contrataciones)
@@ -59,6 +58,20 @@ float PaqueteEspecial::calcularCosto()
 	total = total + this->comisionAgencia;
 
 	return total;
+}
+
+void PaqueteEspecial::getInfo()
+{
+	Paquete::getInfo();
+	cout << "Comision de agencia: " << getComisionAgencia() << endl;
+	cout << "Costo: " << calcularCosto() << endl;
+	cout << "Contrataciones: " << endl;
+	
+	for(Contratacion* contratacion: contrataciones)
+	{
+		contratacion->getInfo();
+		cout << endl;
+	}
 }
 
 PaqueteEspecial::~PaqueteEspecial()

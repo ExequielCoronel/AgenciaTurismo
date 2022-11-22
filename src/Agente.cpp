@@ -26,6 +26,14 @@ string Agente::getApellido()
     return this->apellido;
 }
 
+void Agente::getInfo()
+{
+    cout << "Codigo: " << getCodAgente() << endl;
+    cout << "Nombre: " << getNombre() << endl;
+    cout << "Apellido: " << getApellido() << endl;
+    cout << "DNI: " << dni << endl;
+}
+
 Agente::~Agente()
 {
 

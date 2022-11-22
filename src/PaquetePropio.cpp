@@ -20,12 +20,10 @@ float PaquetePropio::calcularCosto()
 		costoTotal += trayecto->getCosto();
 	}
 
-	costoTotal = costoTotal * (1 - descuento);
+	costoTotal = costoTotal * (1 - (descuento / 100));
 
 	return costoTotal;
 }
-
-int PaquetePropio::cantidadContrataciones(){return 0;}
 
 bool PaquetePropio::ingresarPersonas(int cantidad)
 {
@@ -50,9 +48,8 @@ void PaquetePropio::ingresarTrayecto(Trayecto *trayecto)
 	ListaTrayectos.push_back(trayecto);
 }
 
-void PaquetePropio::ingresarContratacion(Contratacion* contratacion)
+void PaquetePropio::ingresarContratacion(Contratacion *contratacion)
 {
-	
 }
 
 void PaquetePropio::eliminarTrayecto(long codigo)
@@ -69,10 +66,28 @@ void PaquetePropio::eliminarTrayecto(long codigo)
 
 void PaquetePropio::eliminarContratacion(long codigo)
 {
+}
 
+void PaquetePropio::getInfo()
+{
+	Paquete::getInfo();
+	cout << "Cupo maximo de pasajeros: " << getCupoMaxPasajeros() << endl;
+	cout << "Cantidad restante de pasajeros: " << cupoMaxPasajeros - cantidadPersonas << endl;
+	cout << "Costo: " << calcularCosto() << endl;
+	cout << "Descuento: " << descuento << endl;
+	cout << "Trayectos: " << endl;
+	for (Trayecto *trayecto : ListaTrayectos)
+	{
+		trayecto->getInfo();
+		cout << endl;
+	}
+}
+
+int PaquetePropio::cantidadContrataciones()
+{
+	return 0;
 }
 
 PaquetePropio::~PaquetePropio()
 {
-
 }

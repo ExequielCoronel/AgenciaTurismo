@@ -22,6 +22,7 @@ class PaqueteEspecial : public Paquete
 		void eliminarContratacion(long codigo);
 		void eliminarTrayecto(long codigo);
 		float calcularCosto();
+		void getInfo();
 		~PaqueteEspecial();
 };
 

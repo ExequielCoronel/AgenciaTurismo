@@ -5,6 +5,9 @@
 using namespace std;
 #include "Fecha.h"
 #include "Contratacion.h"
+#include "ContratacionHotel.h"
+#include "ContratacionVuelo.h"
+#include "Trayecto.h"
 
 class Paquete
 {
@@ -26,6 +29,7 @@ class Paquete
 		virtual void eliminarTrayecto(long codigo) = 0;
 		virtual int cantidadContrataciones() = 0;
 		Fecha getFechaSalida();
+		virtual void getInfo();
 		virtual ~Paquete();
 };
 

@@ -50,7 +50,7 @@ float Reserva::SeniaMinima()
 	return Packet->calcularCosto() * PORCENTAJESENIA;
 }
 
-void Reserva::AgregarPasajero(Cliente* nuevoPasajero)
+void Reserva::AgregarPasajero(Cliente *nuevoPasajero)
 {
 	ListadoPasajeros.push_back(nuevoPasajero);
 }
@@ -85,7 +85,26 @@ void Reserva::confirmarReserva()
 	}
 }
 
+void Reserva::getInfo()
+{
+	cout << "Codigo: " << getCodigoReserva() << endl;
+	cout << "Fecha de reserva: " << getFechaReserva().toString() << endl;
+	cout << "Fecha de caducidad: " << getFechaCaducidad().toString() << endl;
+	cout << "Agente: " << Agent->getNombre() << endl;
+	cout << "Cantidad de pasajeros: " << cantPersonas << endl;
+	cout << "Senia: " << getSenia() << endl;
+	cout << "Reserva confirmada: ";
+	
+	if (reservaConfirmada)
+	{
+		cout << "Si" << endl;
+	}
+	else
+	{
+		cout << "No" << endl;
+	}
+}
+
 Reserva::~Reserva()
 {
-
 }

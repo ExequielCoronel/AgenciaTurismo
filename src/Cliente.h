@@ -23,6 +23,7 @@ class Cliente
         string getApellido();
         long getDni();
         long getPasaporte();
+        void getInfo();
         Fecha getFechaNacimiento();
         ~Cliente();
 };

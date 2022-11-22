@@ -38,6 +38,16 @@ long Cliente::getPasaporte()
     return this->pasaporte;
 }
 
+void Cliente::getInfo()
+{
+    cout << "Codigo: " << getCodigo() << endl;
+    cout << "Nombre: " << getNombre() << endl;
+    cout << "Apellido: " << getApellido() << endl;
+    cout << "DNI: " << getDni() << endl;
+    cout << "Pasaporte: " << getPasaporte() << endl;
+    cout << "Fecha de nacimiento: " << getFechaNacimiento().toString() << endl;
+}
+
 Fecha Cliente::getFechaNacimiento()
 {
     return this->fechaNacimiento;

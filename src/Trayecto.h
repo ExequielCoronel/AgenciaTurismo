@@ -20,6 +20,7 @@ class Trayecto
 		int getcantDias();
 		float getCosto();
 		long getCodTrayecto();
+		void getInfo();
 		~Trayecto();
 };
 

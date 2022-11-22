@@ -34,6 +34,7 @@ class Reserva
 		float SeniaMinima();
 		bool getPaqueteConfirmado();
 		void confirmarReserva();
+		void getInfo();
 		~Reserva();
 };
 

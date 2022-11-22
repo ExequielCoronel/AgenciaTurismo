@@ -46,6 +46,16 @@ float ContratacionHotel::calcularCostoContratacion()
     return this->cantNoches * this->getPrecioXNoche();
 }
 
+void ContratacionHotel::getInfo(){
+    Contratacion::getInfo();
+    cout << "Hotel: " << getNombreHotel() << endl;
+    cout << "Ubicacion: " << getUbicacion() << endl;
+    cout << "Fecha check in: " << fechaCheckIn.toString() << endl;
+    cout << "Fecha check out: " << fechaCheckOut.toString() << endl;
+    cout << "Cantidad de noches: " << getCantidadNoches() << endl;
+    cout << "Precio por noche: " << getPrecioXNoche() << endl;
+}
+
 ContratacionHotel::~ContratacionHotel()
 {
 }

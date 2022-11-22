@@ -5,25 +5,41 @@ Empresa::Empresa(string nombreEmpresa)
     this->nombre = nombreEmpresa;
 }
 
-void Empresa::ingresarVuelo(string lineaAerea, string operadorVuelo, Fecha fechaSalida, Hora horaSalida, Fecha fechaLlegada, Hora horaLlegada, float tarifaPorMenor, float tarifaPorMayor, int cantMayores, int cantMenores, long codPaquete = 0)
+void Empresa::ingresarVuelo(string lineaAerea, string operadorVuelo, Fecha fechaSalida, Hora horaSalida, Fecha fechaLlegada, Hora horaLlegada, float tarifaPorMenor, float tarifaPorMayor, int cantMayores, int cantMenores, long codPaquete, string destino, Fecha fechaSalidaPaquete, int cantidadDias, int comisionAgencia)
 {
-    contrataciones.push_back(new ContratacionVuelo(lineaAerea, operadorVuelo, fechaSalida, horaSalida, fechaLlegada, horaLlegada, tarifaPorMenor, tarifaPorMayor, cantMayores, cantMenores));
+    Contratacion* contratacion = new ContratacionVuelo(lineaAerea, operadorVuelo, fechaSalida, horaSalida, fechaLlegada, horaLlegada, tarifaPorMenor, tarifaPorMayor, cantMayores, cantMenores);
+    Paquete* paquete;
+    contrataciones.push_back(contratacion);
 
     // En caso de ingresar un código de paquete, busca el paquete
-    if (codPaquete != 0)
+    if (codPaquete != 0 && getPaquetePorCodigo(codPaquete) != NULL)
     {
-        getPaquetePorCodigo(codPaquete)->ingresarContratacion(contrataciones[contrataciones.size() - 1]);
+        getPaquetePorCodigo(codPaquete)->ingresarContratacion(contratacion);
+    }
+    else
+    {
+        paquete = new PaqueteEspecial(destino, fechaSalidaPaquete, cantidadDias, comisionAgencia);
+        paquetes.push_back(paquete);
+        paquete->ingresarContratacion(contratacion);
     }
 }
 
-void Empresa::ingresarHotel(string nombreHotel, string ubicacion, Fecha CheckIn, Fecha CheckOut, int cantidadNoches, float precioNoche, long codPaquete = 0)
+void Empresa::ingresarHotel(string nombreHotel, string ubicacion, Fecha CheckIn, Fecha CheckOut, int cantidadNoches, float precioNoche, long codPaquete, string destino, Fecha fechaSalidaPaquete, int cantidadDias, int comisionAgencia)
 {
-    contrataciones.push_back(new ContratacionHotel(nombreHotel, ubicacion, CheckIn, CheckOut, cantidadNoches, precioNoche));
+    Contratacion* contratacion = new ContratacionHotel(nombreHotel, ubicacion, CheckIn, CheckOut, cantidadNoches, precioNoche);
+    contrataciones.push_back(contratacion);
+    Paquete* paquete;
 
     // En caso de ingresar un código de paquete, busca el paquete
-    if (codPaquete != 0)
+    if (codPaquete != 0 && getPaquetePorCodigo(codPaquete) != NULL)
     {
         getPaquetePorCodigo(codPaquete)->ingresarContratacion(contrataciones[contrataciones.size() - 1]);
+    }
+    else
+    {
+        paquete = new PaqueteEspecial(destino, fechaSalidaPaquete, cantidadDias, comisionAgencia);
+        paquetes.push_back(paquete);
+        paquete->ingresarContratacion(contratacion);
     }
 }
 
@@ -311,6 +327,111 @@ void Empresa::getInfo()
     for (Paquete *p : paquetes)
     {
         cout << "Costo: " << p->calcularCosto() << endl;
+    }
+}
+
+void Empresa::getInfoPaquete(int codigo)
+{
+    if(codigo == 0)
+    {
+        for(Paquete* paquete: paquetes)
+        {
+            paquete->getInfo();
+            cout << endl;
+        }
+    }
+    else{
+        Paquete* paquete = getPaquetePorCodigo(codigo);
+
+        if(paquete != NULL)
+        {
+            paquete->getInfo();
+            cout << endl;
+        }
+    }
+}
+
+void Empresa::getInfoTrayecto(int codigo)
+{
+    if(codigo == 0)
+    {
+        for(Trayecto* trayecto: trayectos)
+        {
+            trayecto->getInfo();
+            cout << endl;
+        }
+    }
+    else{
+        Trayecto* trayecto = getTrayectoPorCodigo(codigo);
+
+        if(trayecto != NULL)
+        {
+            trayecto->getInfo();
+            cout << endl;
+        }
+    }
+}
+
+void Empresa::getInfoContratacion(int codigo)
+{
+    if(codigo == 0)
+    {
+        for(Contratacion* contratacion: contrataciones)
+        {
+            contratacion->getInfo();
+            cout << endl;
+        }
+    }
+    else{
+        Contratacion* contratacion = getContratacionPorCodigo(codigo);
+
+        if(contratacion != NULL)
+        {
+            contratacion->getInfo();
+            cout << endl;
+        }
+    }
+}
+
+void Empresa::getInfoCliente(int codigo)
+{
+    if(codigo == 0)
+    {
+        for(Cliente* cliente: clientes)
+        {
+            cliente->getInfo();
+            cout << endl;
+        }
+    }
+    else{
+        Cliente* cliente = getClientePorCodigo(codigo);
+
+        if(cliente != NULL)
+        {
+            cliente->getInfo();
+            cout << endl;
+        }
+    }
+}
+
+void Empresa::getInfoAgente(int codigo)
+{
+    if(codigo == 0)
+    {
+        for(Agente* agente: empleados)
+        {
+            agente->getInfo();
+            cout << endl;
+        }
+    }
+    else{
+        Agente* agente = getAgentePorCodigo(codigo);
+
+        if(agente != NULL)
+        {
+            agente->getInfo();
+            cout << endl;
+        }
     }
 }
 

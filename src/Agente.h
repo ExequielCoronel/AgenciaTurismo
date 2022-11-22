@@ -17,6 +17,7 @@ class Agente
 		long getCodAgente();
 		string getNombre();
 		string getApellido();
+		void getInfo();
 		~Agente();
 };
 

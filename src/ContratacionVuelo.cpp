@@ -59,6 +59,20 @@ float ContratacionVuelo::calcularCostoContratacion()
     return (this->tarifaPorMayor * this->cantMayores) + (this->tarifaPorMenor * this->cantMenores);
 }
 
+void ContratacionVuelo::getInfo()
+{
+    cout << "Codigo: " << getCodigo() << endl;
+    cout << "Linea aerea: " << getLineaAerea() << endl;
+    cout << "Fecha de salida: " << getFechaSalida().toString() << endl;
+    cout << "Fecha de llegada: " << getFechaLlegada().toString() << endl;
+    cout << "Hora de salida: " << getHoraSalida() << endl;
+    cout << "Hora de llegada: " << getHoraLlegada() << endl;
+    cout << "Costo menores: " << getTarifaPorMenor() << endl;
+    cout << "Costo mayores: " << getTarifaPorMayor() << endl;
+    cout << "Cantidad mayores: " << cantMayores << endl;
+    cout << "Cantidad menores: " << cantMenores << endl;
+}
+
 ContratacionVuelo::~ContratacionVuelo()
 {
 

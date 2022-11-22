@@ -16,8 +16,17 @@ long Paquete::getCodigo()
 	return codPaquete;
 }
 
-Fecha Paquete::getFechaSalida(){
+Fecha Paquete::getFechaSalida()
+{
 	return fechaSalida;
+}
+
+void Paquete::getInfo()
+{
+	cout << "Codigo: " << getCodigo() << endl;
+	cout << "Destino: " << destino << endl;
+	cout << "Fecha de salida: " << getFechaSalida().toString() << endl;
+	cout << "Cantidad de dias: " << cantidadDias << endl;
 }
 
 Paquete::~Paquete()
