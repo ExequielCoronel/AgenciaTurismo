@@ -4,15 +4,18 @@ long Reserva::AI = 1;
 
 Reserva::Reserva(Fecha fechaReserva, Fecha fechaCaducidad, int cantPersonas, Agente *Agente, Paquete *Paquete)
 {
-	this->fechaReserva = fechaReserva;
-	this->fechaCaducidad = fechaCaducidad;
-	this->senia = 0;
-	this->Agent = Agente;
-	this->Packet = Paquete;
-	this->cantPersonas = cantPersonas;
-	this->reservaConfirmada = false;
-	CodigoReserva = AI;
-	AI++;
+	if(Paquete->ingresarPersonas(cantPersonas))
+	{
+		this->fechaReserva = fechaReserva;
+		this->fechaCaducidad = fechaCaducidad;
+		this->senia = 0;
+		this->Agent = Agente;
+		this->Packet = Paquete;
+		this->cantPersonas = cantPersonas;
+		this->reservaConfirmada = false;
+		CodigoReserva = AI;
+		AI++;
+	}
 }
 
 Agente Reserva::getAgente()
@@ -52,7 +55,10 @@ float Reserva::SeniaMinima()
 
 void Reserva::AgregarPasajero(Cliente *nuevoPasajero)
 {
-	ListadoPasajeros.push_back(nuevoPasajero);
+	if(Packet->ingresarPersonas(1))
+	{
+		ListadoPasajeros.push_back(nuevoPasajero);
+	}
 }
 
 void Reserva::EliminarPasajero(long codPasajero)
@@ -62,6 +68,8 @@ void Reserva::EliminarPasajero(long codPasajero)
 		if (ListadoPasajeros[i]->getCodigo() == codPasajero)
 		{
 			ListadoPasajeros.erase(ListadoPasajeros.begin() + i);
+			Packet->eliminarPersonas(1);
+			break;
 		}
 	}
 }

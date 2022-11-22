@@ -21,6 +21,8 @@ class PaqueteEspecial : public Paquete
 		void ingresarContratacion(Contratacion* contratacion);
 		void eliminarContratacion(long codigo);
 		void eliminarTrayecto(long codigo);
+		void eliminarPersonas(int cantidad);
+		bool ingresarPersonas(int cantidad);
 		float calcularCosto();
 		void getInfo();
 		~PaqueteEspecial();

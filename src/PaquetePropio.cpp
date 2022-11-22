@@ -4,6 +4,7 @@ PaquetePropio::PaquetePropio(string destino, Fecha fechaSalida, int cantidadDias
 {
 	cupoMaxPasajeros = cupoMaximoPasajeros;
 	this->descuento = descuento;
+	cantidadPersonas = 0;
 }
 
 float PaquetePropio::getDescuento()
@@ -43,6 +44,12 @@ int PaquetePropio::getCupoMaxPasajeros()
 	return cupoMaxPasajeros;
 }
 
+void PaquetePropio::eliminarPersonas(int cantidad)
+{
+	this->cantidadPersonas -= cantidad;
+	if(cantidadPersonas < 0) cantidadPersonas = 0;
+}
+
 void PaquetePropio::ingresarTrayecto(Trayecto *trayecto)
 {
 	ListaTrayectos.push_back(trayecto);
@@ -78,9 +85,9 @@ void PaquetePropio::getInfo()
 	cout << "Trayectos: " << endl;
 	for (Trayecto *trayecto : ListaTrayectos)
 	{
-		trayecto->getInfo();
-		cout << endl;
+		cout << trayecto->getCiudadOrigen() << " - " << trayecto->getCiudadDestino() << endl;
 	}
+	cout << endl;
 }
 
 int PaquetePropio::cantidadContrataciones()

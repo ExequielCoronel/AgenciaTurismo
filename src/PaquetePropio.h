@@ -21,6 +21,7 @@ class PaquetePropio : public Paquete
 		float calcularCosto();
 		void ingresarTrayecto(Trayecto* trayecto);
 		void ingresarContratacion(Contratacion* contratacion);
+		void eliminarPersonas(int cantidad);
 		int cantidadContrataciones();
 		void eliminarTrayecto(long codigo);
 		void eliminarContratacion(long codigo);

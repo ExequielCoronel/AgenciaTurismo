@@ -10,14 +10,17 @@ float PaqueteEspecial::getComisionAgencia()
 	return comisionAgencia;
 }
 
-int PaqueteEspecial::cantidadContrataciones(){ return contrataciones.size();}
-
-void PaqueteEspecial::ingresarTrayecto(Trayecto* trayecto)
+int PaqueteEspecial::cantidadContrataciones()
 {
-	
+	return contrataciones.size();
 }
 
-void PaqueteEspecial::ingresarContratacion(Contratacion* contratacion){
+void PaqueteEspecial::ingresarTrayecto(Trayecto *trayecto)
+{
+}
+
+void PaqueteEspecial::ingresarContratacion(Contratacion *contratacion)
+{
 	contrataciones.push_back(contratacion);
 }
 
@@ -36,12 +39,20 @@ void PaqueteEspecial::eliminarContratacion(long codigo)
 
 	if (encontrado)
 	{
-		delete contrataciones[index];
 		contrataciones.erase(contrataciones.begin() + index);
 	}
 }
 
 void PaqueteEspecial::eliminarTrayecto(long codigo)
+{
+}
+
+bool PaqueteEspecial::ingresarPersonas(int cantidad)
+{
+	return true;
+}
+
+void PaqueteEspecial::eliminarPersonas(int cantidad)
 {
 
 }
@@ -66,8 +77,8 @@ void PaqueteEspecial::getInfo()
 	cout << "Comision de agencia: " << getComisionAgencia() << endl;
 	cout << "Costo: " << calcularCosto() << endl;
 	cout << "Contrataciones: " << endl;
-	
-	for(Contratacion* contratacion: contrataciones)
+
+	for (Contratacion *contratacion : contrataciones)
 	{
 		contratacion->getInfo();
 		cout << endl;

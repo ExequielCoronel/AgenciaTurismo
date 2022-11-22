@@ -27,6 +27,8 @@ class Paquete
 		virtual void ingresarTrayecto(Trayecto* trayecto) = 0;
 		virtual void eliminarContratacion(long codigo) = 0;
 		virtual void eliminarTrayecto(long codigo) = 0;
+		virtual bool ingresarPersonas(int cantidad) = 0;
+		virtual void eliminarPersonas(int cantidad) = 0;
 		virtual int cantidadContrataciones() = 0;
 		Fecha getFechaSalida();
 		virtual void getInfo();

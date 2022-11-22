@@ -32,7 +32,6 @@ class Reserva
 		bool pagarSenia(long pagoSenia);
 		float getSenia();
 		float SeniaMinima();
-		bool getPaqueteConfirmado();
 		void confirmarReserva();
 		void getInfo();
 		~Reserva();
