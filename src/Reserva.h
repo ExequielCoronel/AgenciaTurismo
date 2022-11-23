@@ -23,6 +23,13 @@ class Reserva
 	public:
 		Reserva(Fecha fechaReserva, Fecha fechaCaducidad, int cantPersonas, Agente *Agente, Paquete *Paquete);
 
+		Paquete *getPaquete();
+		void AgregarPasajero(Cliente*);
+		void EliminarPasajero(long codPasajero);
+		bool pagarSenia(long pagoSenia);
+		float SeniaMinima();
+		void confirmarReserva();
+
 		//Getters
 		long getCodigoReserva();
 		Fecha getFechaReserva();
@@ -31,13 +38,9 @@ class Reserva
 		float getSenia();
 		void getInfo();
 		int getCantidadPersonas();
+		float getSaldoAPagar();
 
-		Paquete *getPaquete();
-		void AgregarPasajero(Cliente*);
-		void EliminarPasajero(long codPasajero);
-		bool pagarSenia(long pagoSenia);
-		float SeniaMinima();
-		void confirmarReserva();
+		
 		~Reserva();
 };
 

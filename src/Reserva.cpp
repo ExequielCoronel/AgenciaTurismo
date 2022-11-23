@@ -55,7 +55,7 @@ int Reserva::getCantidadPersonas()
 
 float Reserva::SeniaMinima()
 {
-	return Packet->calcularCosto() * PORCENTAJESENIA;
+	return getSaldoAPagar() * PORCENTAJESENIA;
 }
 
 void Reserva::AgregarPasajero(Cliente *nuevoPasajero)
@@ -77,6 +77,11 @@ void Reserva::EliminarPasajero(long codPasajero)
 			break;
 		}
 	}
+}
+
+float Reserva::getSaldoAPagar()
+{
+	return Packet->calcularCosto() * cantPersonas;
 }
 
 bool Reserva::pagarSenia(long senia)
