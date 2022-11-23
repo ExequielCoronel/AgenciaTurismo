@@ -22,18 +22,22 @@ class Reserva
 
 	public:
 		Reserva(Fecha fechaReserva, Fecha fechaCaducidad, int cantPersonas, Agente *Agente, Paquete *Paquete);
+
+		//Getters
 		long getCodigoReserva();
 		Fecha getFechaReserva();
 		Fecha getFechaCaducidad();
 		Agente getAgente();
+		float getSenia();
+		void getInfo();
+		int getCantidadPersonas();
+
 		Paquete *getPaquete();
 		void AgregarPasajero(Cliente*);
 		void EliminarPasajero(long codPasajero);
 		bool pagarSenia(long pagoSenia);
-		float getSenia();
 		float SeniaMinima();
 		void confirmarReserva();
-		void getInfo();
 		~Reserva();
 };
 

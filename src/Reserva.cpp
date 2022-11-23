@@ -48,6 +48,11 @@ float Reserva::getSenia()
 	return senia;
 }
 
+int Reserva::getCantidadPersonas()
+{
+	return cantPersonas;
+}
+
 float Reserva::SeniaMinima()
 {
 	return Packet->calcularCosto() * PORCENTAJESENIA;

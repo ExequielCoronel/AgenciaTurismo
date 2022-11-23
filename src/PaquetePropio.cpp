@@ -73,6 +73,7 @@ void PaquetePropio::eliminarTrayecto(long codigo)
 
 void PaquetePropio::eliminarContratacion(long codigo)
 {
+
 }
 
 void PaquetePropio::getInfo()

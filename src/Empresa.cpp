@@ -139,16 +139,46 @@ void Empresa::crearReserva(Fecha fechaReserva, Fecha fechaCaducidad, int cantPer
 
     paquete = getPaquetePorCodigo(codPaquete);
 
-    if(paquete != NULL)
-
     if (encontradoEmpleado && encontradoPaquete)
     {
         reservas.push_back(new Reserva(fechaReserva, fechaCaducidad, cantPersonas, empleado, paquete));
     }
 }
 
-void Empresa::pagarReserva(long codigo)
+void Empresa::confirmarReserva(long codigo)
 {
+	bool encontrado = false;
+	for(int i=0; i < reservas.size() && !encontrado; i++)
+	{
+		if(reservas[i]->getCodigoReserva() == codigo)
+		{
+			encontrado = true;
+			reservas[i]->confirmarReserva();
+		}
+	}
+}
+
+void Empresa::pagarSenia(long codigo, float monto)
+{
+	int index;
+	bool encontrado = false;
+	for (index = 0; index < reservas.size() && !encontrado; index++)
+	{
+		if(reservas[index]->getCodigoReserva() == codigo)
+		{
+			encontrado = true;
+		}
+	}
+	if(encontrado)
+	{
+		if(reservas[index]->pagarSenia(monto))
+		{
+			cout<<"Pago reserva confirmado!"<<endl;
+		} else {
+			cout<<"Pago reserva rechazado!"<<endl;
+		}
+	}
+
 }
 
 void Empresa::eliminarReserva(long codigo)
@@ -166,6 +196,7 @@ void Empresa::eliminarReserva(long codigo)
 
     if (encontrado)
     {
+    	reservas[index]->getPaquete()->eliminarPersonas(reservas[index]->getCantidadPersonas());
         delete reservas[index];
         reservas.erase(reservas.begin() + index);
     }

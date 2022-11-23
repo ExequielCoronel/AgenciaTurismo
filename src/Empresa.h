@@ -39,7 +39,8 @@ class Empresa
         void ingresarPaquete(string destino, Fecha fechaSalida, int cantidadDias, int cupoMaximoPasajeros, float descuento);
         void ingresarTrayectoEnPaquete(long codPaquete, long codTrayecto);
         void crearReserva(Fecha fechaReserva, Fecha fechaCaducidad, int cantPersonas, long codAgente, long codPaquete);
-        void pagarReserva(long codigo);
+        void pagarSenia(long codigo, float monto);
+        void confirmarReserva(long codigo);
 
         // Eliminar
         void eliminarAgente(long codigo);
