@@ -81,6 +81,10 @@ void Reserva::EliminarPasajero(long codPasajero)
 
 float Reserva::getSaldoAPagar()
 {
+	return costoTotal() - senia;
+}
+
+float Reserva::costoTotal(){
 	return Packet->calcularCosto() * cantPersonas;
 }
 
@@ -111,6 +115,7 @@ void Reserva::getInfo()
 	cout << "Agente: " << Agent->getNombre() << endl;
 	cout << "Cantidad de pasajeros: " << cantPersonas << endl;
 	cout << "Senia: " << getSenia() << endl;
+	cout << "Costo total: " << costoTotal() << endl;
 	cout << "Reserva confirmada: ";
 	
 	if (reservaConfirmada)

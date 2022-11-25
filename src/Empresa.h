@@ -38,11 +38,13 @@ class Empresa
         void ingresarTrayecto(string ciudadOrigen, string ciudadDestino, int cantidadDias, float costo);
         void ingresarPaquete(string destino, Fecha fechaSalida, int cantidadDias, int cupoMaximoPasajeros, float descuento);
         void ingresarTrayectoEnPaquete(long codPaquete, long codTrayecto);
+
+        // Administrar reserva
         void crearReserva(Fecha fechaReserva, Fecha fechaCaducidad, int cantPersonas, long codAgente, long codPaquete);
-        void pagarSenia(long codigo, float monto);
+        bool pagarSenia(long codigo, float monto);
         void confirmarReserva(long codigo);
 
-        // Eliminar
+        // Eliminar (no utilizado)
         void eliminarAgente(long codigo);
         void eliminarCliente(long codigo);
         void eliminarReserva(long codigo);
@@ -54,13 +56,14 @@ class Empresa
 
         // Mostrar
         void getInfo();
-        void getInfoPaquete(int codigo = 0);
-        void getInfoTrayecto(int codigo = 0);
-        void getInfoContratacion(int codigo = 0);
-        void getInfoCliente(int codigo = 0);
-        void getInfoAgente(int codigo = 0);
+        void getInfoPaquete(long codigo = 0);
+        void getInfoTrayecto(long codigo = 0);
+        void getInfoContratacion(long codigo = 0);
+        void getInfoCliente(long codigo = 0);
+        void getInfoAgente(long codigo = 0);
+        void getInfoReserva(long codigo = 0);
 
-        // Getters por código privados
+        // Getters privados
         private:
             Agente* getAgentePorCodigo(long codigo);
             Cliente* getClientePorCodigo(long codigo);

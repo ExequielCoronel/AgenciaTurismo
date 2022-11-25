@@ -7,8 +7,8 @@ Empresa::Empresa(string nombreEmpresa)
 
 void Empresa::ingresarVuelo(string lineaAerea, string operadorVuelo, Fecha fechaSalida, Hora horaSalida, Fecha fechaLlegada, Hora horaLlegada, float tarifaPorMenor, float tarifaPorMayor, int cantMayores, int cantMenores, long codPaquete, string destino, Fecha fechaSalidaPaquete, int cantidadDias, int comisionAgencia)
 {
-    Contratacion* contratacion = new ContratacionVuelo(lineaAerea, operadorVuelo, fechaSalida, horaSalida, fechaLlegada, horaLlegada, tarifaPorMenor, tarifaPorMayor, cantMayores, cantMenores);
-    Paquete* paquete;
+    Contratacion *contratacion = new ContratacionVuelo(lineaAerea, operadorVuelo, fechaSalida, horaSalida, fechaLlegada, horaLlegada, tarifaPorMenor, tarifaPorMayor, cantMayores, cantMenores);
+    Paquete *paquete;
     contrataciones.push_back(contratacion);
 
     // En caso de ingresar un código de paquete, busca el paquete
@@ -26,9 +26,9 @@ void Empresa::ingresarVuelo(string lineaAerea, string operadorVuelo, Fecha fecha
 
 void Empresa::ingresarHotel(string nombreHotel, string ubicacion, Fecha CheckIn, Fecha CheckOut, int cantidadNoches, float precioNoche, long codPaquete, string destino, Fecha fechaSalidaPaquete, int cantidadDias, int comisionAgencia)
 {
-    Contratacion* contratacion = new ContratacionHotel(nombreHotel, ubicacion, CheckIn, CheckOut, cantidadNoches, precioNoche);
+    Contratacion *contratacion = new ContratacionHotel(nombreHotel, ubicacion, CheckIn, CheckOut, cantidadNoches, precioNoche);
     contrataciones.push_back(contratacion);
-    Paquete* paquete;
+    Paquete *paquete;
 
     // En caso de ingresar un código de paquete, busca el paquete
     if (codPaquete != 0 && getPaquetePorCodigo(codPaquete) != NULL)
@@ -124,22 +124,11 @@ void Empresa::crearReserva(Fecha fechaReserva, Fecha fechaCaducidad, int cantPer
 {
     Agente *empleado;
     Paquete *paquete;
-    bool encontradoEmpleado = false, encontradoPaquete = false;
 
-    // Obtener el agente según el código
-    for (Agente *emp : empleados)
-    {
-        if (emp->getCodAgente() == codAgente)
-        {
-            empleado = emp;
-            encontradoEmpleado = true;
-            break;
-        }
-    }
-
+    empleado = getAgentePorCodigo(codAgente);
     paquete = getPaquetePorCodigo(codPaquete);
 
-    if (encontradoEmpleado && encontradoPaquete)
+    if (empleado != NULL && paquete != NULL)
     {
         reservas.push_back(new Reserva(fechaReserva, fechaCaducidad, cantPersonas, empleado, paquete));
     }
@@ -147,38 +136,38 @@ void Empresa::crearReserva(Fecha fechaReserva, Fecha fechaCaducidad, int cantPer
 
 void Empresa::confirmarReserva(long codigo)
 {
-	bool encontrado = false;
-	for(int i=0; i < reservas.size() && !encontrado; i++)
-	{
-		if(reservas[i]->getCodigoReserva() == codigo)
-		{
-			encontrado = true;
-			reservas[i]->confirmarReserva();
-		}
-	}
+    bool encontrado = false;
+    for (int i = 0; i < reservas.size() && !encontrado; i++)
+    {
+        if (reservas[i]->getCodigoReserva() == codigo)
+        {
+            encontrado = true;
+            reservas[i]->confirmarReserva();
+        }
+    }
 }
 
-void Empresa::pagarSenia(long codigo, float monto)
+bool Empresa::pagarSenia(long codigo, float monto)
 {
-	int index;
-	bool encontrado = false;
-	for (index = 0; index < reservas.size() && !encontrado; index++)
-	{
-		if(reservas[index]->getCodigoReserva() == codigo)
-		{
-			encontrado = true;
-		}
-	}
-	if(encontrado)
-	{
-		if(reservas[index]->pagarSenia(monto))
-		{
-			cout<<"Pago reserva confirmado!"<<endl;
-		} else {
-			cout<<"Pago reserva rechazado!"<<endl;
-		}
-	}
+    int index;
+    bool encontrado = false;
 
+    for (index = 0; index < reservas.size() && !encontrado; index++)
+    {
+        if (reservas[index]->getCodigoReserva() == codigo)
+        {
+            encontrado = true;
+        }
+    }
+
+    if (encontrado)
+    {
+        return reservas[index]->pagarSenia(monto);
+    }
+    else
+    {
+        return false;
+    }
 }
 
 void Empresa::eliminarReserva(long codigo)
@@ -196,13 +185,11 @@ void Empresa::eliminarReserva(long codigo)
 
     if (encontrado)
     {
-    	reservas[index]->getPaquete()->eliminarPersonas(reservas[index]->getCantidadPersonas());
+        reservas[index]->getPaquete()->eliminarPersonas(reservas[index]->getCantidadPersonas());
         delete reservas[index];
         reservas.erase(reservas.begin() + index);
     }
 }
-
-
 
 void Empresa::eliminarTrayecto(long codigo)
 {
@@ -258,15 +245,15 @@ void Empresa::eliminarContratacion(long codigo)
     }
     if (encontrado)
     {
-    	for(int i=0; i<paquetes.size();i++)
-    	{
-    		paquetes[i]->eliminarContratacion(codigo);
-    		if(paquetes[i]->cantidadContrataciones() == 0)
-    		{
-    			delete paquetes[i];
-    			paquetes.erase(paquetes.begin() + i);
-    		}
-    	}
+        for (int i = 0; i < paquetes.size(); i++)
+        {
+            paquetes[i]->eliminarContratacion(codigo);
+            if (paquetes[i]->cantidadContrataciones() == 0)
+            {
+                delete paquetes[i];
+                paquetes.erase(paquetes.begin() + i);
+            }
+        }
         delete contrataciones[index];
         contrataciones.erase(contrataciones.begin() + index);
     }
@@ -274,11 +261,11 @@ void Empresa::eliminarContratacion(long codigo)
 
 void Empresa::eliminarContratacionDePaquete(long codPaquete, long codContratacion)
 {
-    Paquete* paquete;
+    Paquete *paquete;
 
     paquete = getPaquetePorCodigo(codPaquete);
 
-    if(paquete != NULL)
+    if (paquete != NULL)
     {
         paquete->eliminarContratacion(codContratacion);
     }
@@ -286,16 +273,15 @@ void Empresa::eliminarContratacionDePaquete(long codPaquete, long codContratacio
 
 void Empresa::eliminarTrayectoDePaquete(long codPaquete, long codTrayecto)
 {
-    Paquete* paquete;
+    Paquete *paquete;
 
     paquete = getPaquetePorCodigo(codPaquete);
 
-    if(paquete != NULL)
+    if (paquete != NULL)
     {
         paquete->eliminarTrayecto(codTrayecto);
     }
 }
-
 
 Empresa::~Empresa()
 {
@@ -331,50 +317,21 @@ Empresa::~Empresa()
     paquetes.clear();
 }
 
-void Empresa::getInfo()
+void Empresa::getInfoPaquete(long codigo)
 {
-    cout << "Clientes:" << endl;
-    for (Cliente *c : clientes)
+    if (codigo == 0)
     {
-        cout << c->getApellido() << endl;
-    }
-
-    cout << endl
-         << "Empleados:" << endl;
-    for (Agente *a : empleados)
-    {
-        cout << a->getApellido() << endl;
-    }
-
-    cout << endl
-         << "Trayectos:" << endl;
-    for (Trayecto *t : trayectos)
-    {
-        cout << t->getCiudadOrigen() << " - " << t->getCiudadDestino() << endl;
-    }
-
-    cout << endl
-         << "Paquetes:" << endl;
-    for (Paquete *p : paquetes)
-    {
-        cout << "Costo: " << p->calcularCosto() << endl;
-    }
-}
-
-void Empresa::getInfoPaquete(int codigo)
-{
-    if(codigo == 0)
-    {
-        for(Paquete* paquete: paquetes)
+        for (Paquete *paquete : paquetes)
         {
             paquete->getInfo();
             cout << endl;
         }
     }
-    else{
-        Paquete* paquete = getPaquetePorCodigo(codigo);
+    else
+    {
+        Paquete *paquete = getPaquetePorCodigo(codigo);
 
-        if(paquete != NULL)
+        if (paquete != NULL)
         {
             paquete->getInfo();
             cout << endl;
@@ -382,20 +339,21 @@ void Empresa::getInfoPaquete(int codigo)
     }
 }
 
-void Empresa::getInfoTrayecto(int codigo)
+void Empresa::getInfoTrayecto(long codigo)
 {
-    if(codigo == 0)
+    if (codigo == 0)
     {
-        for(Trayecto* trayecto: trayectos)
+        for (Trayecto *trayecto : trayectos)
         {
             trayecto->getInfo();
             cout << endl;
         }
     }
-    else{
-        Trayecto* trayecto = getTrayectoPorCodigo(codigo);
+    else
+    {
+        Trayecto *trayecto = getTrayectoPorCodigo(codigo);
 
-        if(trayecto != NULL)
+        if (trayecto != NULL)
         {
             trayecto->getInfo();
             cout << endl;
@@ -403,20 +361,21 @@ void Empresa::getInfoTrayecto(int codigo)
     }
 }
 
-void Empresa::getInfoContratacion(int codigo)
+void Empresa::getInfoContratacion(long codigo)
 {
-    if(codigo == 0)
+    if (codigo == 0)
     {
-        for(Contratacion* contratacion: contrataciones)
+        for (Contratacion *contratacion : contrataciones)
         {
             contratacion->getInfo();
             cout << endl;
         }
     }
-    else{
-        Contratacion* contratacion = getContratacionPorCodigo(codigo);
+    else
+    {
+        Contratacion *contratacion = getContratacionPorCodigo(codigo);
 
-        if(contratacion != NULL)
+        if (contratacion != NULL)
         {
             contratacion->getInfo();
             cout << endl;
@@ -424,20 +383,21 @@ void Empresa::getInfoContratacion(int codigo)
     }
 }
 
-void Empresa::getInfoCliente(int codigo)
+void Empresa::getInfoCliente(long codigo)
 {
-    if(codigo == 0)
+    if (codigo == 0)
     {
-        for(Cliente* cliente: clientes)
+        for (Cliente *cliente : clientes)
         {
             cliente->getInfo();
             cout << endl;
         }
     }
-    else{
-        Cliente* cliente = getClientePorCodigo(codigo);
+    else
+    {
+        Cliente *cliente = getClientePorCodigo(codigo);
 
-        if(cliente != NULL)
+        if (cliente != NULL)
         {
             cliente->getInfo();
             cout << endl;
@@ -445,22 +405,45 @@ void Empresa::getInfoCliente(int codigo)
     }
 }
 
-void Empresa::getInfoAgente(int codigo)
+void Empresa::getInfoAgente(long codigo)
 {
-    if(codigo == 0)
+    if (codigo == 0)
     {
-        for(Agente* agente: empleados)
+        for (Agente *agente : empleados)
         {
             agente->getInfo();
             cout << endl;
         }
     }
-    else{
-        Agente* agente = getAgentePorCodigo(codigo);
+    else
+    {
+        Agente *agente = getAgentePorCodigo(codigo);
 
-        if(agente != NULL)
+        if (agente != NULL)
         {
             agente->getInfo();
+            cout << endl;
+        }
+    }
+}
+
+void Empresa::getInfoReserva(long codigo)
+{
+    if (codigo == 0)
+    {
+        for (Reserva *reserva : reservas)
+        {
+            reserva->getInfo();
+            cout << endl;
+        }
+    }
+    else
+    {
+        Reserva *reserva = getReservaPorCodigo(codigo);
+
+        if (reserva != NULL)
+        {
+            reserva->getInfo();
             cout << endl;
         }
     }

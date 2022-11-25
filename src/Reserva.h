@@ -29,6 +29,7 @@ class Reserva
 		bool pagarSenia(long pagoSenia);
 		float SeniaMinima();
 		void confirmarReserva();
+		float costoTotal();
 
 		//Getters
 		long getCodigoReserva();
